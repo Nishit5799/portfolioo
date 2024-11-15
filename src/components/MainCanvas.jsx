@@ -5,7 +5,7 @@ import React from "react";
 
 import ScrollContainer from "./ScrollContainer";
 import { Environment } from "@react-three/drei";
-import BgScene from "./bgScene";
+import BgScene from "./BgScene";
 
 const MainCanvas = () => {
   return (
