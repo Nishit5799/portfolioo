@@ -14,42 +14,67 @@ export default function Codinggroom(props) {
   });
   useGSAP(() => {
     tl.current = gsap.timeline();
+    tl.current.to(group.current.rotation, {
+      x: -0.05,
+    });
+    tl.current.to(
+      group.current.position,
+      {
+        z: 1,
+        y: 0.2,
+      },
+      0
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: 0.04,
+      },
+      0
+    );
+    tl.current.to(
+      group.current.position,
+      {
+        x: -0.8,
+      },
+      0
+    );
+
+    //after page2
+
     tl.current.to(group.current.position, {
-      duration: 2,
+      x: 0.3,
       z: 2,
-    });
-    tl.current.to(group.current.position, {
-      duration: 1.5,
       y: 0.5,
-      z: 2.5,
     });
-    tl.current.to(group.current.rotation, {
-      duration: 2,
-      y: 1.5,
-    });
-    tl.current.to(group.current.position, {
-      duration: 2,
-      z: 5.5,
-    });
-    tl.current.to(group.current.position, {
-      duration: 2,
-      z: 1.5,
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: 1.33,
 
-      x: 1.5,
-    });
-    tl.current.to(group.current.rotation, {
-      duration: 2,
-      y: 0,
-    });
-    tl.current.to(group.current.position, {
-      duration: 2,
-      z: 0,
-
-      x: 0,
-    });
+        z: 0.5,
+      },
+      1
+    );
+    tl.current.to(
+      group.current.position,
+      {
+        x: -0.8,
+        y: 1.6,
+        z: 2.7,
+      },
+      1
+    );
   }, []);
   return (
-    <group {...props} ref={group} scale={0.21} dispose={null}>
+    <group
+      {...props}
+      ref={group}
+      rotation={[0.6, 1.7, 0]}
+      position={[-1.4, 0, 5.3]}
+      scale={0.19}
+      dispose={null}
+    >
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh
           geometry={nodes.Object_2.geometry}

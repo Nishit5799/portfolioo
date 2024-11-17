@@ -11,6 +11,10 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        jelly: ["JellyBelly", "sans-serif"],
+        choco: ["ChocoCrunch", "sans-serif"],
+      },
     },
   },
   plugins: [],
