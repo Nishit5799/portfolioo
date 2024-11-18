@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         jelly: ["JellyBelly", "sans-serif"],
         choco: ["ChocoCrunch", "sans-serif"],
+        maison: ["Maison", "sans-serif"],
       },
     },
   },

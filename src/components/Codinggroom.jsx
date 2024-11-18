@@ -40,7 +40,7 @@ export default function Codinggroom(props) {
       0
     );
 
-    //after page2
+    //after page1
 
     tl.current.to(group.current.position, {
       x: 0.3,
@@ -64,6 +64,37 @@ export default function Codinggroom(props) {
         z: 2.7,
       },
       1
+    );
+
+    //after page2
+
+    tl.current.to(
+      group.current.position,
+      {
+        y: 0.6,
+        z: 2,
+        x: -1.4,
+      },
+      1.5
+    );
+
+    tl.current.to(
+      group.current.position,
+      {
+        y: 1,
+        z: 5.1,
+        x: -2,
+      },
+      2
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        x: -0.4,
+        y: -0.05,
+        z: 0.05,
+      },
+      2
     );
   }, []);
   return (
