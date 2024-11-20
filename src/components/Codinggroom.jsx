@@ -96,6 +96,24 @@ export default function Codinggroom(props) {
       },
       2
     );
+
+    //after page3
+    tl.current.to(
+      group.current.position,
+      {
+        y: 1,
+        x: 1,
+      },
+      2.5
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: 1.7,
+      },
+      2.5
+    );
+    tl.current.to(group.current.position, { y: 1.5, x: 0.2, z: 6 }, 3);
   }, []);
   return (
     <group

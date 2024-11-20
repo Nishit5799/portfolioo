@@ -34,15 +34,15 @@ const Page2 = () => {
   };
 
   return (
-    <div className="w-[100vw] page2 h-[100vh] flex flex-col items-center justify-center px-10 sm:py-10 py-20 bg-black/45">
+    <div className="w-[100vw] page2 h-[100vh] flex flex-col items-center justify-center px-10 sm:py-10 py-20 bg-black/30">
       <h1
         ref={headRef}
         className="sm:text-[5vw] h-full font-jelly w-full text-[13vw] text-yellow-500 text-center"
       >
-        {splitHeading("About me?")}
+        {splitHeading("About me ?")}
       </h1>
       <h2
-        className="sm:text-[2.2vw] h-full sm:w-[50%] w-[95%] font-jelly text-[5.1vw] bg-black/20  text-yellow-500 text-center font-outline rounded-2xl
+        className="sm:text-[2.2vw] h-full sm:w-[50%] w-[95%] font-jelly text-[5.1vw]   text-yellow-500 text-center font-outline rounded-2xl
         sm:text-outline text-outline2"
       >
         A self-taught frontend developer with a passion for coding and

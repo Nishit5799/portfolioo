@@ -41,7 +41,7 @@ const Page1 = () => {
   const headingText = "Welcome To, Nishit's Portfolio!";
 
   return (
-    <div className="w-[100vw] page1 h-screen  bg-black/40  font-jelly flex items-center justify-center sm:text-outline text-outline2">
+    <div className="w-[100vw] page1 h-screen  bg-black/30  font-jelly flex items-center justify-center sm:text-outline text-outline2">
       <h1
         ref={page1HeadingRef}
         className="sm:text-[7vw] text-yellow-500 text-[13vw] text-center sm:w-[50%] w-[100%]"
