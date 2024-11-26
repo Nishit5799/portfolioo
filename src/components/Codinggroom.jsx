@@ -282,10 +282,13 @@ export default function Codinggroom(props) {
   const { nodes, materials } = useGLTF("./codinggroom.glb");
   const group = useRef(null);
   const gateref = useRef(null);
+  const lightref = useRef(null);
   const tl = useRef(null);
   const scroll = useScroll();
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [lightIntensity, setLightIntensity] = useState(0.5);
+
   const rotation = isSmallScreen ? [0, 3, 0] : [0, 3.2, 0];
 
   useEffect(() => {
@@ -329,9 +332,13 @@ export default function Codinggroom(props) {
     // );
 
     //here
-    tl.current.to(group.current.position, {
-      z: 5.3,
-    });
+    tl.current.to(
+      group.current.position,
+      {
+        z: 5.3,
+      },
+      0
+    );
     tl.current.to(
       gateref.current.rotation,
       {
@@ -349,13 +356,75 @@ export default function Codinggroom(props) {
     tl.current.to(
       group.current.position,
       {
-        y: 0.8,
+        y: 1.3,
         x: -0.6,
-        z: 2.6,
+        z: 2.8,
       },
       0.5
     );
+
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: 4, // Start bright
+        duration: 0.2, // Short duration
+        ease: "power1.inOut",
+        // ease: "none",
+      },
+      0
+    );
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: 0, // Dim
+        duration: 0.11,
+        ease: "power1.inOut",
+      },
+      ">0.1" // Start immediately after the previous
+    );
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: gsap.utils.random(3, 6), // Random flicker brightness
+        duration: 0.1,
+        repeat: 8, // Flicker 5 times
+        yoyo: true, // Create a flickering effect
+        ease: "none", // Linear for randomness
+      },
+      ">0.09"
+    );
+
+    // Stabilizing the light
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: 4, // Final stable intensity
+        duration: 0.5,
+        ease: "linear",
+        onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
+      },
+      ">0.5" // After flickering ends
+    );
     tl.current.to(group.current.rotation, { y: 1.3 }, 0.5);
+    // tl.current.to(
+    //   lightref.current,
+    //   {
+    //     intensity: 0.2, // Target intensity
+    //     duration: 0.5, // Duration of animation
+    //     onUpdate: () => setLightIntensity(lightref.current.intensity),
+    //   },
+    //   0.5
+    // );
+
+    // tl.current.to(
+    //   lightref.current,
+    //   {
+    //     intensity: 6, // Adjust to another value later in the timeline
+    //     duration: 1,
+    //     onUpdate: () => setLightIntensity(lightref.current.intensity),
+    //   },
+    //   0.5
+    // );
     // tl.current.to(
     //   group.current.rotation,
     //   {
@@ -442,159 +511,162 @@ export default function Codinggroom(props) {
     // tl.current.to(group.current.position, { y: 1.5, x: 0.2, z: 6 }, 3);
   }, []);
   return (
-    <group
-      {...props}
-      ref={group}
-      rotation={rotation}
-      position={[2, 0.3, 8.1]}
-      scale={0.19}
-      dispose={null}
-    >
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          geometry={nodes.Object_2.geometry}
-          material={materials.blinn2SG}
-        />
-        <group
-          rotation={[0, 0, 0]} // Rotate this group around its local Y-axis
-          position={[0, 0, 0]}
-          // rotation={[0, 0, -1.56]} // Rotate this group around its local Y-axis
-          // position={[21, 0, 0]}
-          ref={gateref}
-        >
+    <>
+      <ambientLight ref={lightref} intensity={lightIntensity} />
+      <group
+        {...props}
+        ref={group}
+        rotation={rotation}
+        position={[2, 0.3, 8.1]}
+        scale={0.19}
+        dispose={null}
+      >
+        <group rotation={[-Math.PI / 2, 0, 0]}>
           <mesh
-            geometry={nodes.Object_3.geometry}
-            material={materials.blinn3SG}
+            geometry={nodes.Object_2.geometry}
+            material={materials.blinn2SG}
+          />
+          <group
+            rotation={[0, 0, 0]} // Rotate this group around its local Y-axis
+            position={[0, 0, 0]}
+            // rotation={[0, 0, -1.56]} // Rotate this group around its local Y-axis
+            // position={[21, 0, 0]}
+            ref={gateref}
+          >
+            <mesh
+              geometry={nodes.Object_3.geometry}
+              material={materials.blinn3SG}
+            />
+          </group>
+          <mesh
+            geometry={nodes.Object_4.geometry}
+            material={materials.blinn4SG}
+          />
+          <mesh
+            geometry={nodes.Object_5.geometry}
+            material={materials.blinn5SG}
+          />
+          <mesh
+            geometry={nodes.Object_6.geometry}
+            material={materials.lambert10SG}
+          />
+          <mesh
+            geometry={nodes.Object_7.geometry}
+            material={materials.lambert17SG}
+          />
+          <mesh
+            geometry={nodes.Object_8.geometry}
+            material={materials.lambert15SG}
+          />
+          <mesh
+            geometry={nodes.Object_9.geometry}
+            material={materials.lambert20SG}
+          />
+          <mesh
+            geometry={nodes.Object_10.geometry}
+            material={materials.lambert16SG}
+          />
+          <mesh
+            geometry={nodes.Object_11.geometry}
+            material={materials.lambert23SG}
+          />
+          <mesh
+            geometry={nodes.Object_12.geometry}
+            material={materials.lambert3SG}
+          />
+          <mesh
+            geometry={nodes.Object_13.geometry}
+            material={materials.lambert8SG}
+          />
+          <mesh
+            geometry={nodes.Object_14.geometry}
+            material={materials.lambert22SG}
+          />
+          <mesh
+            geometry={nodes.Object_15.geometry}
+            material={materials.lambert26SG}
+          />
+          {/* <group
+            rotation={[0, 0, -1.6]} // Rotate this group around its local Y-axis
+            // position={[21.9, -7.5, 7]}
+            position={[21.9, -7.5, 7]}
+          >
+            <mesh
+              geometry={nodes.Object_16.geometry}
+              material={materials.lambert28SG}
+            />
+          </group> */}
+          <mesh
+            geometry={nodes.Object_17.geometry}
+            material={materials.blinn4SG}
+          />
+          <mesh
+            geometry={nodes.Object_18.geometry}
+            material={materials.blinn5SG}
+          />
+          <mesh
+            geometry={nodes.Object_19.geometry}
+            material={materials.lambert11SG}
+          />
+          <mesh
+            geometry={nodes.Object_20.geometry}
+            material={materials.lambert12SG}
+          />
+          <mesh
+            geometry={nodes.Object_21.geometry}
+            material={materials.lambert19SG}
+          />
+          <mesh
+            geometry={nodes.Object_22.geometry}
+            material={materials.lambert21SG}
+          />
+          <mesh
+            geometry={nodes.Object_23.geometry}
+            material={materials.lambert14SG}
+          />
+          <mesh
+            geometry={nodes.Object_24.geometry}
+            material={materials.lambert13SG}
+          />
+          <mesh
+            geometry={nodes.Object_25.geometry}
+            material={materials.lambert13SG}
+          />
+          <mesh
+            geometry={nodes.Object_26.geometry}
+            material={materials.lambert18SG}
+          />
+          <mesh
+            geometry={nodes.Object_27.geometry}
+            material={materials.lambert24SG}
+          />
+          <mesh
+            geometry={nodes.Object_28.geometry}
+            material={materials.lambert3SG}
+          />
+          <mesh
+            geometry={nodes.Object_29.geometry}
+            material={materials.lambert4SG}
+          />
+          <mesh
+            geometry={nodes.Object_30.geometry}
+            material={materials.lambert9SG}
+          />
+          <mesh
+            geometry={nodes.Object_31.geometry}
+            material={materials.lambert25SG}
+          />
+          <mesh
+            geometry={nodes.Object_32.geometry}
+            material={materials.lambert27SG}
+          />
+          <mesh
+            geometry={nodes.Object_33.geometry}
+            material={materials.lambert2SG}
           />
         </group>
-        <mesh
-          geometry={nodes.Object_4.geometry}
-          material={materials.blinn4SG}
-        />
-        <mesh
-          geometry={nodes.Object_5.geometry}
-          material={materials.blinn5SG}
-        />
-        <mesh
-          geometry={nodes.Object_6.geometry}
-          material={materials.lambert10SG}
-        />
-        <mesh
-          geometry={nodes.Object_7.geometry}
-          material={materials.lambert17SG}
-        />
-        <mesh
-          geometry={nodes.Object_8.geometry}
-          material={materials.lambert15SG}
-        />
-        <mesh
-          geometry={nodes.Object_9.geometry}
-          material={materials.lambert20SG}
-        />
-        <mesh
-          geometry={nodes.Object_10.geometry}
-          material={materials.lambert16SG}
-        />
-        <mesh
-          geometry={nodes.Object_11.geometry}
-          material={materials.lambert23SG}
-        />
-        <mesh
-          geometry={nodes.Object_12.geometry}
-          material={materials.lambert3SG}
-        />
-        <mesh
-          geometry={nodes.Object_13.geometry}
-          material={materials.lambert8SG}
-        />
-        <mesh
-          geometry={nodes.Object_14.geometry}
-          material={materials.lambert22SG}
-        />
-        <mesh
-          geometry={nodes.Object_15.geometry}
-          material={materials.lambert26SG}
-        />
-        <group
-          rotation={[0, 0, -1.6]} // Rotate this group around its local Y-axis
-          // position={[21.9, -7.5, 7]}
-          position={[21.9, -7.5, 7]}
-        >
-          <mesh
-            geometry={nodes.Object_16.geometry}
-            material={materials.lambert28SG}
-          />
-        </group>
-        <mesh
-          geometry={nodes.Object_17.geometry}
-          material={materials.blinn4SG}
-        />
-        <mesh
-          geometry={nodes.Object_18.geometry}
-          material={materials.blinn5SG}
-        />
-        <mesh
-          geometry={nodes.Object_19.geometry}
-          material={materials.lambert11SG}
-        />
-        <mesh
-          geometry={nodes.Object_20.geometry}
-          material={materials.lambert12SG}
-        />
-        <mesh
-          geometry={nodes.Object_21.geometry}
-          material={materials.lambert19SG}
-        />
-        <mesh
-          geometry={nodes.Object_22.geometry}
-          material={materials.lambert21SG}
-        />
-        <mesh
-          geometry={nodes.Object_23.geometry}
-          material={materials.lambert14SG}
-        />
-        <mesh
-          geometry={nodes.Object_24.geometry}
-          material={materials.lambert13SG}
-        />
-        <mesh
-          geometry={nodes.Object_25.geometry}
-          material={materials.lambert13SG}
-        />
-        <mesh
-          geometry={nodes.Object_26.geometry}
-          material={materials.lambert18SG}
-        />
-        <mesh
-          geometry={nodes.Object_27.geometry}
-          material={materials.lambert24SG}
-        />
-        <mesh
-          geometry={nodes.Object_28.geometry}
-          material={materials.lambert3SG}
-        />
-        <mesh
-          geometry={nodes.Object_29.geometry}
-          material={materials.lambert4SG}
-        />
-        <mesh
-          geometry={nodes.Object_30.geometry}
-          material={materials.lambert9SG}
-        />
-        <mesh
-          geometry={nodes.Object_31.geometry}
-          material={materials.lambert25SG}
-        />
-        <mesh
-          geometry={nodes.Object_32.geometry}
-          material={materials.lambert27SG}
-        />
-        <mesh
-          geometry={nodes.Object_33.geometry}
-          material={materials.lambert2SG}
-        />
       </group>
-    </group>
+    </>
   );
 }
 
