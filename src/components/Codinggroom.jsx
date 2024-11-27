@@ -387,11 +387,11 @@ export default function Codinggroom(props) {
       {
         intensity: gsap.utils.random(3, 6), // Random flicker brightness
         duration: 0.1,
-        repeat: 8, // Flicker 5 times
+        repeat: 6, // Flicker 5 times
         yoyo: true, // Create a flickering effect
         ease: "none", // Linear for randomness
       },
-      ">0.09"
+      ">0.1"
     );
 
     // Stabilizing the light

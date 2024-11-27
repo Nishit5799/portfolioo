@@ -1,14 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-* {
-  padding: 0;
-  margin: 0;
-}
-body {
-  background-color: black;
-}
 @font-face {
   font-family: "JellyBelly";
   src: url("/fonts/JellyBellyFont-Regular.ttf") format("truetype");
@@ -22,16 +14,6 @@ body {
   font-style: normal;
 }
 @font-face {
-  font-family: "Maison";
-  src: url("/fonts/fonnts.com-Maison_Neue_Book.ttf") format("truetype");
-  font-weight: normal; /* or 400 */
-  font-style: normal;
-}
-.text-outline {
-  -webkit-text-stroke: 3px black; /* For Safari/Chrome */
-  /* text-stroke: 2px black; For Firefox, although not supported in all cases */
-  color: yellow; /* Make sure the text color is set */
-}
-.text-outline2 {
-  color: yellow; /* Make sure the text color is set */
+  font-family: "zentry";
+  src: url("/fonts/zentry-regular.woff2") format("woff2");
 }
