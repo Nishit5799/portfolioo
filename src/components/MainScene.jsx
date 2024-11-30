@@ -1,12 +1,11 @@
 import React from "react";
-
-import Codinggroom from "./Codinggroom";
+import Codinggg from "./Codinggg";
 
 const MainScene = () => {
   return (
     <>
       <group>
-        <Codinggroom />
+        <Codinggg />
       </group>
     </>
   );

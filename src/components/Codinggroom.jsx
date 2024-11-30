@@ -289,7 +289,7 @@ export default function Codinggroom(props) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [lightIntensity, setLightIntensity] = useState(0.5);
 
-  const rotation = isSmallScreen ? [0, 3, 0] : [0, 3.2, 0];
+  const rotation = isSmallScreen ? [0, 3, 0] : [0, -6.68, 0];
 
   useEffect(() => {
     const handleResize = () => {
@@ -305,113 +305,35 @@ export default function Codinggroom(props) {
   });
   useGSAP(() => {
     tl.current = gsap.timeline();
-    // tl.current.to(group.current.rotation, {
-    //   x: -0.05,
-    // });
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     z: 1,
-    //     y: 0.2,
-    //   },
-    //   0
-    // );
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: 0.04,
-    //   },
-    //   0
-    // );
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     x: -0.8,
-    //   },
-    //   0
-    // );
 
     //here
-    tl.current.to(
-      group.current.position,
-      {
-        z: 5.3,
-      },
-      0
-    );
-    tl.current.to(
-      gateref.current.rotation,
-      {
-        z: -1.56,
-      },
-      0
-    );
-    tl.current.to(
-      gateref.current.position,
-      {
-        x: 21,
-      },
-      0
-    );
-    tl.current.to(
-      group.current.position,
-      {
-        y: 1.3,
-        x: -0.6,
-        z: 2.8,
-      },
-      0.5
-    );
-
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: 4, // Start bright
-        duration: 0.2, // Short duration
-        ease: "power1.inOut",
-        // ease: "none",
-      },
-      0
-    );
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: 0, // Dim
-        duration: 0.11,
-        ease: "power1.inOut",
-      },
-      ">0.1" // Start immediately after the previous
-    );
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: gsap.utils.random(3, 6), // Random flicker brightness
-        duration: 0.1,
-        repeat: 6, // Flicker 5 times
-        yoyo: true, // Create a flickering effect
-        ease: "none", // Linear for randomness
-      },
-      ">0.1"
-    );
-
-    // Stabilizing the light
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: 4, // Final stable intensity
-        duration: 0.5,
-        ease: "linear",
-        onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
-      },
-      ">0.5" // After flickering ends
-    );
-    tl.current.to(group.current.rotation, { y: 1.3 }, 0.5);
     // tl.current.to(
-    //   lightref.current,
+    //   group.current.position,
     //   {
-    //     intensity: 0.2, // Target intensity
-    //     duration: 0.5, // Duration of animation
-    //     onUpdate: () => setLightIntensity(lightref.current.intensity),
+    //     z: 5.3,
+    //   },
+    //   0
+    // );
+    // tl.current.to(
+    //   gateref.current.rotation,
+    //   {
+    //     z: -1.56,
+    //   },
+    //   0
+    // );
+    // tl.current.to(
+    //   gateref.current.position,
+    //   {
+    //     x: 21,
+    //   },
+    //   0
+    // );
+    // tl.current.to(
+    //   group.current.position,
+    //   {
+    //     y: 1.3,
+    //     x: -0.6,
+    //     z: 2.8,
     //   },
     //   0.5
     // );
@@ -419,96 +341,67 @@ export default function Codinggroom(props) {
     // tl.current.to(
     //   lightref.current,
     //   {
-    //     intensity: 6, // Adjust to another value later in the timeline
-    //     duration: 1,
-    //     onUpdate: () => setLightIntensity(lightref.current.intensity),
+    //     intensity: 4, // Start bright
+    //     duration: 0.2, // Short duration
+    //     ease: "power1.inOut",
+    //     // ease: "none",
     //   },
-    //   0.5
+    //   0
     // );
     // tl.current.to(
-    //   group.current.rotation,
+    //   lightref.current,
     //   {
-    //     y: 4.3,
+    //     intensity: 0, // Dim
+    //     duration: 0.11,
+    //     ease: "power1.inOut",
     //   },
-    //   0.5
-    // );
-
-    //till here
-
-    // //after page1
-
-    // tl.current.to(group.current.position, {
-    //   x: 0.3,
-    //   z: 2,
-    //   y: 0.5,
-    // });
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: 1.33,
-
-    //     z: 0.5,
-    //   },
-    //   1
+    //   ">0.1" // Start immediately after the previous
     // );
     // tl.current.to(
-    //   group.current.position,
+    //   lightref.current,
     //   {
-    //     x: -0.8,
-    //     y: 1.6,
-    //     z: 2.7,
+    //     intensity: gsap.utils.random(3, 6), // Random flicker brightness
+    //     duration: 0.1,
+    //     repeat: 6, // Flicker 5 times
+    //     yoyo: true, // Create a flickering effect
+    //     ease: "none", // Linear for randomness
     //   },
-    //   1
+    //   ">0.1"
     // );
 
-    // //after page2
-
+    // // Stabilizing the light
     // tl.current.to(
-    //   group.current.position,
+    //   lightref.current,
     //   {
-    //     y: 0.6,
-    //     z: 2,
-    //     x: -1.4,
+    //     intensity: 4, // Final stable intensity
+    //     duration: 0.5,
+    //     ease: "linear",
+    //     onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
     //   },
-    //   1.5
+    //   ">0.4" // After flickering ends
     // );
+    // tl.current.to(group.current.rotation, { y: 1.4 }, 0.5);
+    // tl.current.to(group.current.position, { z: 3 }, 1.5);
+
+    // //after page13
 
     // tl.current.to(
     //   group.current.position,
     //   {
-    //     y: 1,
-    //     z: 5.1,
-    //     x: -2,
+    //     y: -0.5,
+    //     x: -1,
+    //     z: 5.5,
     //   },
     //   2
     // );
     // tl.current.to(
     //   group.current.rotation,
     //   {
-    //     x: -0.4,
-    //     y: -0.05,
-    //     z: 0.05,
+    //     x: 0.2,
+    //     y: 0.4,
     //   },
     //   2
     // );
-
-    // //after page3
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     y: 1,
-    //     x: 1,
-    //   },
-    //   2.5
-    // );
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: 1.7,
-    //   },
-    //   2.5
-    // );
-    // tl.current.to(group.current.position, { y: 1.5, x: 0.2, z: 6 }, 3);
   }, []);
   return (
     <>
@@ -517,7 +410,7 @@ export default function Codinggroom(props) {
         {...props}
         ref={group}
         rotation={rotation}
-        position={[2, 0.3, 8.1]}
+        position={[-1, 0.3, -2]}
         scale={0.19}
         dispose={null}
       >
@@ -527,8 +420,8 @@ export default function Codinggroom(props) {
             material={materials.blinn2SG}
           />
           <group
-            rotation={[0, 0, 0]} // Rotate this group around its local Y-axis
-            position={[0, 0, 0]}
+            rotation={[0, 0, -4.68]} // Rotate this group around its local Y-axis
+            position={[4.9, -30, -0.2]}
             // rotation={[0, 0, -1.56]} // Rotate this group around its local Y-axis
             // position={[21, 0, 0]}
             ref={gateref}
@@ -586,16 +479,17 @@ export default function Codinggroom(props) {
             geometry={nodes.Object_15.geometry}
             material={materials.lambert26SG}
           />
-          {/* <group
+          <group
             rotation={[0, 0, -1.6]} // Rotate this group around its local Y-axis
             // position={[21.9, -7.5, 7]}
-            position={[21.9, -7.5, 7]}
+            position={[21.9, -7.5, 0]}
           >
+            <ambientLight intensity={1} />
             <mesh
               geometry={nodes.Object_16.geometry}
               material={materials.lambert28SG}
             />
-          </group> */}
+          </group>
           <mesh
             geometry={nodes.Object_17.geometry}
             material={materials.blinn4SG}

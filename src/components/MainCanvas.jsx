@@ -10,7 +10,11 @@ import BgScene from "./BgScene";
 const MainCanvas = () => {
   return (
     <div className="w-full h-screen fixed top-0 left-0">
-      <Canvas shadows dpr={[1, 2]} camera={{ fov: 64, position: [0, 2, 4] }}>
+      <Canvas
+        shadows
+        dpr={[1, 2]}
+        camera={{ fov: 64, position: [1.3, 1.8, 4] }}
+      >
         {/* <Environment preset="city" /> */}
 
         <BgScene />

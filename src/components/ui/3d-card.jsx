@@ -20,7 +20,7 @@ export const CardContainer = ({ children, className, containerClassName }) => {
       containerRef.current.getBoundingClientRect();
 
     // Increased divisor to reduce rotation even more
-    const x = (e.clientX - left - width / 2) / 160; // Smaller rotation on X-axis
+    const x = (e.clientX - left - width / 2) / 155; // Smaller rotation on X-axis
     const y = -(e.clientY - top - height / 2) / 50; // Adjust Y-axis rotation if needed
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
