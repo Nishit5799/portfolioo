@@ -29,12 +29,17 @@ export default function Codinggg(props) {
   });
   useGSAP(() => {
     tl.current = gsap.timeline();
+
+    const gaterefPositions = isSmallScreen
+      ? { x: 29.7, y: -7 } // Small screen positions
+      : { x: 30, y: -9 }; // Large screen positions
+
     tl.current.to(
       group.current.position,
       {
-        z: 5,
-        x: 0.3,
-        y: 0.2,
+        z: 3,
+        x: -0.9,
+        y: 0.1,
       },
       0
     );
@@ -42,31 +47,38 @@ export default function Codinggg(props) {
     tl.current.to(
       gateref.current.position,
       {
-        x: -30,
-        y: -37,
-        z: 0,
+        x: gaterefPositions.x, // Dynamic based on screen size
       },
       0
     );
+
+    tl.current.to(
+      gateref.current.position,
+      {
+        y: gaterefPositions.y, // Dynamic based on screen size
+      },
+      0.1
+    );
+
     tl.current.to(
       gateref.current.rotation,
       {
         x: 0,
         y: 0,
-        z: 2,
+        z: -2,
       },
       0
     );
+
     tl.current.to(
       lightref.current,
       {
         intensity: 4, // Start bright
-        duration: 0.2, // Short duration
         ease: "power1.inOut",
-        // ease: "none",
       },
-      0
+      ">0.01"
     );
+
     tl.current.to(
       lightref.current,
       {
@@ -74,18 +86,19 @@ export default function Codinggg(props) {
         duration: 0.11,
         ease: "power1.inOut",
       },
-      ">0.1" // Start immediately after the previous
+      "0.01"
     );
+
     tl.current.to(
       lightref.current,
       {
-        intensity: gsap.utils.random(3, 6), // Random flicker brightness
+        intensity: gsap.utils.random(3, 5), // Random flicker brightness
         duration: 0.1,
         repeat: 6, // Flicker 5 times
-        yoyo: true, // Create a flickering effect
-        ease: "none", // Linear for randomness
+        yoyo: true,
+        ease: "none",
       },
-      ">0.1"
+      "0.001"
     );
 
     // Stabilizing the light
@@ -97,27 +110,37 @@ export default function Codinggg(props) {
         ease: "linear",
         onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
       },
-      ">0.5" // After flickering ends
+      "0.1"
     );
+
     tl.current.to(
       group.current.position,
       {
-        z: 3,
-        x: 0.3,
+        x: 2,
+        z: 3.1,
         y: 0.2,
       },
       0.5
     );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -7,
+        x: 0.2,
+      },
+      0.5
+    );
   });
+
   return (
     <>
       <ambientLight ref={lightref} intensity={lightIntensity} />
-
+      {/* <ambientLight intensity={3} /> */}
       <group
         ref={group}
         {...props}
         dispose={null}
-        position={[-3, -0.5, -1]}
+        position={[-4.3, -3, -5.5]}
         rotation={[0, -6, 0]}
       >
         <group name="Scene">

@@ -14,7 +14,7 @@ const ScrollContainer = () => {
   return (
     <>
       {/* <OrbitControls /> */}
-      <ScrollControls pages={3} damping={0.5}>
+      <ScrollControls pages={2} damping={0.2}>
         <MainScene />
         <Scroll html>
           {/* <Page1 />

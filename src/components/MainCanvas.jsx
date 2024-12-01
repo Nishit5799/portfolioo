@@ -13,7 +13,7 @@ const MainCanvas = () => {
       <Canvas
         shadows
         dpr={[1, 2]}
-        camera={{ fov: 64, position: [1.3, 1.8, 4] }}
+        camera={{ fov: 64, position: [1.8, 0.8, 4] }}
       >
         {/* <Environment preset="city" /> */}
 
