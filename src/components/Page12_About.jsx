@@ -7,11 +7,14 @@ import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 export function ThreeDCardDemo() {
   return (
     <>
-      <h1 className="sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[7.5vw] sm:leading-none  text-[11vw] text-center  sm:px-0 text-white font-jelly">
-        So, Let me introduce myself....
+      <h1 className="sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[9.5vw] sm:leading-none  text-[18vw] text-center  sm:px-0 text-white/90 font-jelly ">
+        Welcome!
       </h1>
-      <CardContainer className="inter-var w-full">
-        <CardBody className=" relative group/card   dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-none  sm:w-[100vw] w-full h-auto rounded-xl p-6 border  ">
+      <h1 className="sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[4vw] sm:leading-none  text-[7vw] text-center  sm:px-0 text-white/90 font-jelly">
+        Let me introduce myself..
+      </h1>
+      <CardContainer className="inter-var w-full -mt-[8vw] sm:-mt-0">
+        <CardBody className=" relative group/card   dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-none  sm:w-[100vw] w-full h-auto rounded-xl p-3 border  ">
           <CardItem
             translateZ="100"
             className="sm:w-[10%] sm:h-fit  w-[40%]  mx-auto mt-4"

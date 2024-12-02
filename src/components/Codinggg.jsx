@@ -92,7 +92,7 @@ export default function Codinggg(props) {
     tl.current.to(
       lightref.current,
       {
-        intensity: gsap.utils.random(3, 5), // Random flicker brightness
+        intensity: gsap.utils.random(3, 4), // Random flicker brightness
         duration: 0.1,
         repeat: 6, // Flicker 5 times
         yoyo: true,
@@ -105,7 +105,7 @@ export default function Codinggg(props) {
     tl.current.to(
       lightref.current,
       {
-        intensity: 4, // Final stable intensity
+        intensity: 5, // Final stable intensity
         duration: 0.5,
         ease: "linear",
         onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
@@ -116,19 +116,37 @@ export default function Codinggg(props) {
     tl.current.to(
       group.current.position,
       {
-        x: 2,
-        z: 3.1,
-        y: 0.2,
+        x: 0.7,
+        z: 2.69,
+        y: 0,
       },
       0.5
     );
     tl.current.to(
       group.current.rotation,
       {
-        y: -7,
-        x: 0.2,
+        y: -4.7,
+        // x: 0.3,
       },
       0.5
+    );
+
+    //after page3
+    tl.current.to(
+      group.current.position,
+      {
+        z: 6.1,
+        y: -0.9,
+        x: 1.2,
+      },
+      1
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -5.69,
+      },
+      1
     );
   });
 
