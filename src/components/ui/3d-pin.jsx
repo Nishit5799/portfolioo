@@ -25,7 +25,7 @@ export const PinContainer = ({
   return (
     <Link
       className={cn(
-        "relative group/pin z-50  cursor-pointer",
+        "relative   group/pin z-50  cursor-pointer ",
         containerClassName
       )}
       onMouseEnter={onMouseEnter}
@@ -37,7 +37,7 @@ export const PinContainer = ({
           perspective: "1000px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 ml-[0.09375rem] sm:mt-4 -mt-[10vw]  -translate-x-1/2 -translate-y-1/2"
       >
         <div
           style={{

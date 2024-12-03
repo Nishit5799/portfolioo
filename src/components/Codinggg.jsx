@@ -92,7 +92,7 @@ export default function Codinggg(props) {
     tl.current.to(
       lightref.current,
       {
-        intensity: gsap.utils.random(3, 4), // Random flicker brightness
+        intensity: gsap.utils.random(3, 10), // Random flicker brightness
         duration: 0.1,
         repeat: 6, // Flicker 5 times
         yoyo: true,
@@ -105,7 +105,7 @@ export default function Codinggg(props) {
     tl.current.to(
       lightref.current,
       {
-        intensity: 5, // Final stable intensity
+        intensity: 11, // Final stable intensity
         duration: 0.5,
         ease: "linear",
         onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync

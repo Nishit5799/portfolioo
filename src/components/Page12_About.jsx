@@ -3,14 +3,23 @@
 import Image from "next/image";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap/all";
 
 export function ThreeDCardDemo() {
+  useGSAP(() => {
+    gsap.to(".page12heading", {
+      opacity: 1,
+      delay: 10,
+      duration: 0.5,
+    });
+  });
   return (
     <>
-      <h1 className="sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[9.5vw] sm:leading-none  text-[18vw] text-center  sm:px-0 text-white/90 font-jelly ">
+      <h1 className="page12heading sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[9.5vw] sm:leading-none  text-[18vw] text-center text-outline-black  sm:px-0 text-white/90 font-jelly ">
         Welcome!
       </h1>
-      <h1 className="sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[4vw] sm:leading-none  text-[7vw] text-center  sm:px-0 text-white/90 font-jelly">
+      <h1 className="sm:w-[80%] sm:rounded-3xl text-outline-black mx-auto px-2 sm:text-[4vw] sm:leading-none  text-[7vw] text-center  sm:px-0 text-white/90 font-jelly">
         Let me introduce myself..
       </h1>
       <CardContainer className="inter-var w-full -mt-[8vw] sm:-mt-0">

@@ -17,3 +17,7 @@
   font-family: "zentry";
   src: url("/fonts/zentry-regular.woff2") format("woff2");
 }
+.text-outline-black {
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+}

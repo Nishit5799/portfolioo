@@ -1,3 +1,5 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap/all";
 import React from "react";
 
 const Page11 = () => {
