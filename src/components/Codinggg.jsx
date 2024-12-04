@@ -1,8 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useAnimations, useGLTF, useScroll } from "@react-three/drei";
+import {
+  useAnimations,
+  useGLTF,
+  useScroll,
+  Text,
+  useTexture,
+} from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 export default function Codinggg(props) {
   const group = useRef(null);
@@ -27,6 +34,12 @@ export default function Codinggg(props) {
   useFrame((state, delta) => {
     tl.current.seek(scroll.offset * tl.current.duration());
   });
+  const largeScreenPosition = [0.6, 1.05, 3.3];
+  const smallScreenPosition = [0.45, 1.05, 3.1];
+  const groupInitialPosition = isSmallScreen
+    ? smallScreenPosition
+    : largeScreenPosition;
+
   useGSAP(() => {
     tl.current = gsap.timeline();
 
@@ -116,39 +129,62 @@ export default function Codinggg(props) {
     tl.current.to(
       group.current.position,
       {
-        x: 0.7,
-        z: 2.69,
-        y: 0,
+        x: groupInitialPosition[0],
+        y: groupInitialPosition[1],
+        z: groupInitialPosition[2],
+        duration: 0.5,
+        ease: "power1.out",
       },
       0.5
     );
+    // tl.current.to(
+    //   group.current.position,
+    //   {
+    //     x: 0.6,
+    //     z: 3.3,
+    //     y: 1.05,
+    //   },
+    //   0.5
+    // ); // larger screen
+    // tl.current.to(
+    //   group.current.position,
+    //   {
+    //     x: 0.45,
+    //     z: 3.1,
+    //     y: 1.05,
+    //   },
+    //   0.5
+    // ); // sm screen
     tl.current.to(
       group.current.rotation,
       {
-        y: -4.7,
-        // x: 0.3,
+        y: -4.42,
+        x: 0.8,
+        z: 0.7,
       },
       0.5
     );
 
     //after page3
-    tl.current.to(
-      group.current.position,
-      {
-        z: 6.1,
-        y: -0.9,
-        x: 1.2,
-      },
-      1
-    );
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -5.69,
-      },
-      1
-    );
+    // tl.current.to(
+    //   group.current.position,
+    //   {
+    //     z: 6.1,
+    //     y: -0.9,
+    //     x: 1.2,
+    //   },
+    //   1
+    // );
+    // tl.current.to(
+    //   group.current.rotation,
+    //   {
+    //     y: -5.69,
+    //   },
+    //   1
+    // );
   });
+  const texture = useTexture("/img.avif");
+  const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
 
   return (
     <>
@@ -205,8 +241,101 @@ export default function Codinggg(props) {
             <mesh
               name="Object_15"
               geometry={nodes.Object_15.geometry}
-              material={materials.lambert26SG}
+              material={blankWhiteMaterial} // Apply the blank material
             />
+            {/* Add dynamic text */}
+            <group position={[-0.58, 0.36, 0]}>
+              <mesh
+                position={[-1.65, -5.35, 1.89]}
+                rotation={[0, 0, -2.1]}
+                scale={[0.3, 0.4, 0.3]}
+              >
+                <planeGeometry args={[1, 1]} /> {/* Explicit width/height */}
+                <meshBasicMaterial map={texture} />
+              </mesh>
+
+              <Text
+                position={[-1.88, -5, 1.89]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.15}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                I am Nishit Lugun
+              </Text>
+              <Text
+                position={[-2, -4.9, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                A self-taught frontend developer with a passion for coding and
+              </Text>
+              <Text
+                position={[-2.12, -4.83, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                problem-solving, who spent two years mastering web development
+              </Text>
+              <Text
+                position={[-2.24, -4.77, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                independently. During this time, he relied solely on his
+                curiosity
+              </Text>
+              <Text
+                position={[-2.36, -4.7, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                and determination, never using external platforms, and built his
+              </Text>
+              <Text
+                position={[-2.48, -4.65, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                skills from the ground up. His journey reflects resilience and a
+              </Text>
+              <Text
+                position={[-2.6, -4.59, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                deep understanding of creating intuitive, user-friendly websites
+              </Text>
+              <Text
+                position={[-2.76, -4.59, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.067}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                from scratch.
+              </Text>
+            </group>
             <mesh
               name="Object_16"
               geometry={nodes.Object_16.geometry}

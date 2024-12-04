@@ -20,7 +20,7 @@ const Page13 = () => {
         </h1>
       </div>
 
-      <div className="sm:w-full w-full h-screen sm:h-screen -mt-[5vh] sm:-mt-0  flex flex-wrap sm:flex-wrap sm:gap-2   sm:items-center sm:justify-center">
+      <div className="sm:w-[90%] sm:mx-auto w-full h-screen sm:h-fit -mt-[5vh] sm:-mt-0  flex flex-wrap sm:flex-wrap sm:gap-0   sm:items-center sm:justify-center">
         {skills.map((skill, i) => {
           return (
             <AnimatedPinDemo
