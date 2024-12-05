@@ -34,7 +34,7 @@ export default function Codinggg(props) {
   useFrame((state, delta) => {
     tl.current.seek(scroll.offset * tl.current.duration());
   });
-  const largeScreenPosition = [0.6, 1.05, 3.3];
+  const largeScreenPosition = [0.5, 1.05, 3.18];
   const smallScreenPosition = [0.45, 1.05, 3.1];
   const groupInitialPosition = isSmallScreen
     ? smallScreenPosition
@@ -167,28 +167,37 @@ export default function Codinggg(props) {
 
     //after page3
     tl.current.to(
-      group.current.position,
-      {
-        z: 5.5,
-        y: -1.4,
-        x: 0.7,
-      },
-      1
-    );
-    tl.current.to(
       group.current.rotation,
       {
         // y: 0,
-        z: 0.1,
-        x: 0.1,
-        y: 0.4,
+        // z: 0.1,
+        x: 0.02,
+        z: 0.01,
+        y: 0.41,
+      },
+      1
+    );
+    // tl.current.to(
+    //   group.current.rotation,
+    //   {
+    //     y: 0,
+    //   },
+    //   1
+    // );
+    tl.current.to(
+      group.current.position,
+      {
+        z: 6.1,
+        y: -1,
+        x: 0.6,
       },
       1
     );
   });
   const texture = useTexture("/img.avif");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
-
+  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#787878" });
+  const fontURL = "/JellyBellyFont-Regular.ttf"; // Replace with your font file's path
   return (
     <>
       <ambientLight ref={lightref} intensity={lightIntensity} />
@@ -265,7 +274,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                I am Nishit Lugun
+                Nishit Lugun
               </Text>
               <Text
                 position={[-2, -4.9, 1.87]} // Slightly above the surface
@@ -356,11 +365,71 @@ export default function Codinggg(props) {
               geometry={nodes.Object_18.geometry}
               material={materials.blinn5SG}
             />
-            <mesh
+            {/* <mesh
               name="Object_19"
               geometry={nodes.Object_19.geometry}
-              material={materials.lambert11SG}
-            />
+              material={blankBlackMaterial} // Applying the blank material
+            /> */}
+            <group>
+              {/* Object 19 */}
+              <mesh
+                name="Object_19"
+                geometry={nodes.Object_19.geometry}
+                material={blankBlackMaterial} // Applying the black material
+              />
+
+              {/* Add Text over Object_19 */}
+              <Text
+                position={[10, 12.45, 9.4]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
+                fontSize={0.33} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                My Skills!
+              </Text>
+
+              {/* Add an Image (Plane) over Object_19 */}
+              <mesh position={[9, 12.45, 8.7]} rotation={[-1.6, 3.3, 3.2]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/html.webp")} />
+              </mesh>
+              <mesh position={[10, 12.45, 8.7]} rotation={[-1.6, 3.3, 3.15]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/css.webp")} />
+              </mesh>
+              <mesh position={[11, 12.45, 8.6]} rotation={[-1.6, 3.3, 3.09]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/js.webp")} />
+              </mesh>
+              <mesh position={[9, 12.45, 7.6]} rotation={[-1.6, 3.3, 3.2]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/react.webp")} />
+              </mesh>
+              <mesh position={[10, 12.45, 7.7]} rotation={[-1.6, 3.3, 3.15]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/three.webp")} />
+              </mesh>
+              <mesh position={[11, 12.45, 7.5]} rotation={[-1.6, 3.3, 3.15]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/gsap.webp")} />
+              </mesh>
+              <mesh position={[9, 12.45, 6.4]} rotation={[-1.6, 3, 3.1]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/mongo.webp")} />
+              </mesh>
+              <mesh position={[10, 12.45, 6.4]} rotation={[-1.6, 3.01, 3.06]}>
+                <planeGeometry args={[0.5, 0.4]} />
+                <meshBasicMaterial map={useTexture("/git.webp")} />
+              </mesh>
+              <mesh position={[11, 12.45, 6.4]} rotation={[-1.6, 3.13, 3.06]}>
+                <planeGeometry args={[0.5, 0.5]} />
+                <meshBasicMaterial map={useTexture("/node.webp")} />
+              </mesh>
+            </group>
+
             <mesh
               name="Object_2"
               geometry={nodes.Object_2.geometry}

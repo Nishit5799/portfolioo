@@ -14,13 +14,13 @@ const Page13 = () => {
   ];
   return (
     <>
-      <div className="sm:mt-[38vw] mt-[70vh] w-full  mx-auto">
+      <div className="sm:mt-[45vw] mt-[90vh] w-full  mx-auto opacity-0">
         <h1 className="w-full h-fit text-center rounded-3xl sm:text-[5.5vw] text-[13.5vw] mb-20 sm:mb-0 font-jelly  text-white text-outline-black ">
           My skills!
         </h1>
       </div>
 
-      <div className="sm:w-[90%] sm:mx-auto w-full h-screen sm:h-fit -mt-[5vh] sm:-mt-0  flex flex-wrap sm:flex-wrap sm:gap-0   sm:items-center sm:justify-center">
+      <div className="sm:w-[90%] sm:mx-auto w-full h-screen sm:h-fit opacity-0 -mt-[5vh] sm:-mt-0  flex flex-wrap sm:flex-wrap sm:gap-0   sm:items-center sm:justify-center">
         {skills.map((skill, i) => {
           return (
             <AnimatedPinDemo
