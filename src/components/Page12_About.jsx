@@ -61,10 +61,10 @@ import React from "react";
 const Page12_About = () => {
   return (
     <>
-      <h1 className="page12heading sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[9.5vw] sm:leading-none  text-[18vw] text-center text-outline-black  sm:px-0 text-white/90 font-jelly ">
+      <h1 className="page12heading h-[50vh] sm:h-[100vh] sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:text-[9.5vw] sm:leading-none  text-[18vw] text-center text-outline-black  sm:px-0 text-white/90 font-jelly ">
         Welcome!{" "}
       </h1>
-      <h1 className="sm:w-[80%] sm:rounded-3xl text-outline-black mx-auto px-2 sm:text-[4vw] sm:leading-none  text-[7vw] text-center  sm:px-0 text-white/90 font-jelly">
+      <h1 className="sm:w-[80%] sm:rounded-3xl text-outline-black mx-auto px-2 sm:text-[4vw] sm:leading-none  text-[15vw] text-center  sm:px-0 text-white/90 font-jelly">
         Let me introduce myself..
       </h1>
     </>

@@ -14,9 +14,9 @@ const Page13 = () => {
   ];
   return (
     <>
-      <div className="sm:mt-[17vw] mt-[29vw] w-full  mx-auto">
+      <div className="sm:mt-[38vw] mt-[70vh] w-full  mx-auto">
         <h1 className="w-full h-fit text-center rounded-3xl sm:text-[5.5vw] text-[13.5vw] mb-20 sm:mb-0 font-jelly  text-white text-outline-black ">
-          Skills!
+          My skills!
         </h1>
       </div>
 

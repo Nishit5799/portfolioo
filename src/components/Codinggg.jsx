@@ -166,22 +166,25 @@ export default function Codinggg(props) {
     );
 
     //after page3
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     z: 6.1,
-    //     y: -0.9,
-    //     x: 1.2,
-    //   },
-    //   1
-    // );
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: -5.69,
-    //   },
-    //   1
-    // );
+    tl.current.to(
+      group.current.position,
+      {
+        z: 5.5,
+        y: -1.4,
+        x: 0.7,
+      },
+      1
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        // y: 0,
+        z: 0.1,
+        x: 0.1,
+        y: 0.4,
+      },
+      1
+    );
   });
   const texture = useTexture("/img.avif");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
