@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import VideoMesh from "./VideoMesh";
 
 export default function Codinggg(props) {
   const group = useRef(null);
@@ -34,11 +35,6 @@ export default function Codinggg(props) {
   useFrame((state, delta) => {
     tl.current.seek(scroll.offset * tl.current.duration());
   });
-  const largeScreenPosition = [0.5, 1.05, 3.18];
-  const smallScreenPosition = [0.45, 1.05, 3.1];
-  const groupInitialPosition = isSmallScreen
-    ? smallScreenPosition
-    : largeScreenPosition;
 
   useGSAP(() => {
     tl.current = gsap.timeline();
@@ -126,78 +122,111 @@ export default function Codinggg(props) {
       "0.1"
     );
 
+    // tl.current.to(
+    //   group.current.position,
+    //   {
+    //     x: 0.6,
+    //     y: 1,
+    //     z: 3.2,
+    //     duration: 0.5,
+    //     ease: "power1.out",
+    //   },
+    //   0.5
+    // );
     tl.current.to(
       group.current.position,
       {
-        x: groupInitialPosition[0],
-        y: groupInitialPosition[1],
-        z: groupInitialPosition[2],
+        x: 0.2,
+        y: 1,
+        z: 2.95,
         duration: 0.5,
         ease: "power1.out",
       },
       0.5
     );
+
     // tl.current.to(
-    //   group.current.position,
+    //   group.current.rotation,
     //   {
-    //     x: 0.6,
-    //     z: 3.3,
-    //     y: 1.05,
+    //     y: -4.38,
+    //     x: 0.3,
+    //     z: 0.9,
     //   },
     //   0.5
-    // ); // larger screen
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     x: 0.45,
-    //     z: 3.1,
-    //     y: 1.05,
-    //   },
-    //   0.5
-    // ); // sm screen
+    // ); //large screen
     tl.current.to(
       group.current.rotation,
       {
-        y: -4.42,
+        y: -4.25,
         x: 0.8,
-        z: 0.7,
+        z: 0.8,
       },
       0.5
-    );
+    ); //small screen
 
     //after page3
     tl.current.to(
       group.current.rotation,
       {
-        // y: 0,
-        // z: 0.1,
-        x: 0.02,
-        z: 0.01,
-        y: 0.41,
+        x: -0.2,
+        z: 0.3,
+        // y: 0.41,
       },
       1
     );
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: 0,
-    //   },
-    //   1
-    // );
+
     tl.current.to(
       group.current.position,
       {
-        z: 6.1,
-        y: -1,
-        x: 0.6,
+        y: -0.9,
+        x: 1.2,
+        z: 3.9,
       },
       1
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -5.9,
+        x: -0.2,
+      },
+      1.5
+    );
+    tl.current.to(
+      group.current.position,
+      {
+        z: 6,
+        x: 0.88,
+        y: -0.8,
+      },
+      1.5
+    );
+
+    //projects animation
+
+    tl.current.to(
+      group.current.position,
+      {
+        z: 5.5,
+        x: 2,
+      },
+      2
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -4.4,
+        x: -0.2,
+      },
+      2
     );
   });
   const texture = useTexture("/img.avif");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
-  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#787878" });
-  const fontURL = "/JellyBellyFont-Regular.ttf"; // Replace with your font file's path
+  const blankBlackMaterial = new THREE.MeshBasicMaterial({
+    color: "#C6AC8F",
+  });
+  const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
   return (
     <>
       <ambientLight ref={lightref} intensity={lightIntensity} />
@@ -252,13 +281,20 @@ export default function Codinggg(props) {
             />
             <mesh
               name="Object_15"
+              position={[0.5, -0.3, 0]}
+              geometry={nodes.Object_15.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+            />
+            <mesh
+              name="Object_15"
               geometry={nodes.Object_15.geometry}
               material={blankWhiteMaterial} // Apply the blank material
             />
             {/* Add dynamic text */}
+
             <group position={[-0.58, 0.36, 0]}>
               <mesh
-                position={[-1.65, -5.35, 1.89]}
+                position={[-1.52, -5.3, 1.89]}
                 rotation={[0, 0, -2.1]}
                 scale={[0.3, 0.4, 0.3]}
               >
@@ -267,9 +303,22 @@ export default function Codinggg(props) {
               </mesh>
 
               <Text
-                position={[-1.88, -5, 1.89]} // Slightly above the surface
+                position={[-1.1, -5.5, 1.89]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.14}
+                // font={fontURL}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                LET ME INTRODUCE MYSELF!
+              </Text>
+
+              <Text
+                position={[-1.81, -5.1, 1.89]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.15}
+                // font={fontURL}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -279,7 +328,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2, -4.9, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -299,7 +348,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.24, -4.77, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -310,7 +359,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.36, -4.7, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -320,7 +369,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.48, -4.65, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -330,7 +379,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.6, -4.59, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -340,7 +389,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.76, -4.59, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.07}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -389,6 +438,105 @@ export default function Codinggg(props) {
                 font={fontURL}
               >
                 My Skills!
+              </Text>
+              <Text
+                position={[9, 12.45, 8.3]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.25]} // Align with Object_19
+                fontSize={0.22} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                HTML
+              </Text>
+              <Text
+                position={[10, 12.45, 8.3]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
+                fontSize={0.24} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                CSS
+              </Text>
+              <Text
+                position={[11, 12.45, 8.14]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
+                fontSize={0.22} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                JAVASCRIPT
+              </Text>
+              <Text
+                position={[9, 12.45, 7.1]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
+                fontSize={0.26} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                REACT
+              </Text>
+              <Text
+                position={[10, 12.45, 7.25]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.17]} // Align with Object_19
+                fontSize={0.28} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                THREE
+              </Text>
+              <Text
+                position={[11, 12.45, 7.05]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
+                fontSize={0.26} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                GSAP
+              </Text>
+              <Text
+                position={[9, 12.45, 5.9]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.33]} // Align with Object_19
+                fontSize={0.24} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                MONGODB
+              </Text>
+              <Text
+                position={[10, 12.45, 5.9]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
+                fontSize={0.25} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                GITHUB
+              </Text>
+              <Text
+                position={[11, 12.45, 5.9]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
+                fontSize={0.26} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                NODE
               </Text>
 
               {/* Add an Image (Plane) over Object_19 */}
@@ -513,11 +661,13 @@ export default function Codinggg(props) {
               rotation={[0, 0, 1.571]}
               scale={[0.01, 0.761, 1]}
             />
+
             <mesh
               name="Object_4"
               geometry={nodes.Object_4.geometry}
               material={materials.blinn4SG}
             />
+
             <mesh
               name="Object_5"
               geometry={nodes.Object_5.geometry}
@@ -544,6 +694,8 @@ export default function Codinggg(props) {
               material={materials.lambert20SG}
             />
           </group>
+
+          <VideoMesh />
         </group>
       </group>
     </>
