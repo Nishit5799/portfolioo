@@ -1,0 +1,127 @@
+
+export default function Codinggg(props) {
+  const group = useRef(null);
+  const { nodes, materials, animations } = useGLTF("/untitled.gltf");
+  const { actions } = useAnimations(animations, group);
+  const gateref = useRef(null);
+  const lightref = useRef(null);
+  const tl = useRef(gsap.timeline());
+  const scroll = useScroll();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [lightIntensity, setLightIntensity] = useState(0.5);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Check screen size on mount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useFrame((state, delta) => {
+    if (tl.current) {
+      tl.current.seek(scroll.offset * tl.current.duration());
+    }
+  });
+
+  // Set dynamic positions and initialize GSAP timeline
+  const initTimeline = () => {
+    const gaterefPositions = isSmallScreen
+      ? { x: 29.7, y: -7 } // Small screen positions
+      : { x: 30, y: -9 }; // Large screen positions
+
+    const groupPosition = isSmallScreen
+      ? { x: 0.43, y: 0.96, z: 3.37 } // Small screen position
+      : { x: 0.6, y: 0.96, z: 3.34 }; // Large screen position
+
+    const groupRotation = isSmallScreen
+      ? { y: -4.23, x: 0.5, z: 1 } // Small screen rotation
+      : { y: -4.38, x: 0.3, z: 0.9 }; // Large screen rotation
+
+    tl.current.clear();
+
+    tl.current.to(group.current.position, { z: 3, x: -0.9, y: 0.1 }, 0);
+
+    tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
+    tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
+    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
+
+    tl.current.to(
+      lightref.current,
+      { intensity: 4, ease: "power1.inOut" },
+      ">0.01"
+    );
+    tl.current.to(
+      lightref.current,
+      { intensity: 0, duration: 0.11, ease: "power1.inOut" },
+      "0.01"
+    );
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: gsap.utils.random(3, 10),
+        duration: 0.1,
+        repeat: 6,
+        yoyo: true,
+        ease: "none",
+      },
+      "0.001"
+    );
+    tl.current.to(
+      lightref.current,
+      {
+        intensity: 11,
+        duration: 0.5,
+        ease: "linear",
+        onUpdate: () => setLightIntensity(lightref.current.intensity),
+      },
+      "0.1"
+    );
+
+    // Group position and rotation based on screen size
+    tl.current.to(group.current.position, groupPosition, 0.5);
+    tl.current.to(group.current.rotation, groupRotation, 0.5);
+
+    // Additional animations after page 3
+    tl.current.to(
+      group.current.rotation,
+      { x: -0.2, z: 0.3 },
+      1
+    );
+    tl.current.to(
+      group.current.position,
+      { y: -0.9, x: 1.2, z: 3.9 },
+      1
+    );
+    tl.current.to(
+      group.current.rotation,
+      { y: -5.9, x: -0.2 },
+      1.5
+    );
+    tl.current.to(
+      group.current.position,
+      { z: 6, x: 0.88, y: -0.8 },
+      1.5
+    );
+
+    // Projects animation
+    tl.current.to(
+      group.current.position,
+      { z: 5.5, x: 2 },
+      2
+    );
+    tl.current.to(
+      group.current.rotation,
+      { y: -4.4, x: -0.2 },
+      2
+    );
+  };
+
+  useEffect(() => {
+    initTimeline();
+  }, [isSmallScreen]);
+
+  const texture = useTexture("/img.avif");
+  const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
+  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });

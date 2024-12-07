@@ -18,11 +18,11 @@ export default function Codinggg(props) {
   const { actions } = useAnimations(animations, group);
   const gateref = useRef(null);
   const lightref = useRef(null);
-  const tl = useRef(null);
+  const tl = useRef(gsap.timeline());
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  // const rotation = isSmallScreen ? [0, -6, 0] : [0, -6, 0];
   const [lightIntensity, setLightIntensity] = useState(0.5);
+
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
@@ -33,199 +33,87 @@ export default function Codinggg(props) {
   }, []);
 
   useFrame((state, delta) => {
-    tl.current.seek(scroll.offset * tl.current.duration());
+    if (tl.current) {
+      tl.current.seek(scroll.offset * tl.current.duration());
+    }
   });
 
-  useGSAP(() => {
-    tl.current = gsap.timeline();
-
+  // Set dynamic positions and initialize GSAP timeline
+  const initTimeline = () => {
     const gaterefPositions = isSmallScreen
       ? { x: 29.7, y: -7 } // Small screen positions
       : { x: 30, y: -9 }; // Large screen positions
 
-    tl.current.to(
-      group.current.position,
-      {
-        z: 3,
-        x: -0.9,
-        y: 0.1,
-      },
-      0
-    );
+    const groupPosition = isSmallScreen
+      ? { x: 0.435, y: 0.71, z: 3.47 } // Small screen position
+      : { x: 0.6, y: 0.96, z: 3.34 }; // Large screen position
 
-    tl.current.to(
-      gateref.current.position,
-      {
-        x: gaterefPositions.x, // Dynamic based on screen size
-      },
-      0
-    );
+    const groupRotation = isSmallScreen
+      ? { y: -4.1, x: 0.8, z: 0.81 } // Small screen rotation
+      : { y: -4.38, x: 0.3, z: 0.9 }; // Large screen rotation
 
-    tl.current.to(
-      gateref.current.position,
-      {
-        y: gaterefPositions.y, // Dynamic based on screen size
-      },
-      0.1
-    );
+    tl.current.clear();
 
-    tl.current.to(
-      gateref.current.rotation,
-      {
-        x: 0,
-        y: 0,
-        z: -2,
-      },
-      0
-    );
+    tl.current.to(group.current.position, { z: 3, x: -0.9, y: 0.1 }, 0);
+
+    tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
+    tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
+    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
 
     tl.current.to(
       lightref.current,
-      {
-        intensity: 4, // Start bright
-        ease: "power1.inOut",
-      },
+      { intensity: 4, ease: "power1.inOut" },
       ">0.01"
     );
-
     tl.current.to(
       lightref.current,
-      {
-        intensity: 0, // Dim
-        duration: 0.11,
-        ease: "power1.inOut",
-      },
+      { intensity: 0, duration: 0.11, ease: "power1.inOut" },
       "0.01"
     );
-
     tl.current.to(
       lightref.current,
       {
-        intensity: gsap.utils.random(3, 10), // Random flicker brightness
+        intensity: gsap.utils.random(3, 10),
         duration: 0.1,
-        repeat: 6, // Flicker 5 times
+        repeat: 6,
         yoyo: true,
         ease: "none",
       },
       "0.001"
     );
-
-    // Stabilizing the light
     tl.current.to(
       lightref.current,
       {
-        intensity: 11, // Final stable intensity
+        intensity: 11,
         duration: 0.5,
         ease: "linear",
-        onUpdate: () => setLightIntensity(lightref.current.intensity), // Optional state sync
+        onUpdate: () => setLightIntensity(lightref.current.intensity),
       },
       "0.1"
     );
 
-    // tl.current.to(
-    //   group.current.position,
-    //   {
-    //     x: 0.6,
-    //     y: 1,
-    //     z: 3.2,
-    //     duration: 0.5,
-    //     ease: "power1.out",
-    //   },
-    //   0.5
-    // );
-    tl.current.to(
-      group.current.position,
-      {
-        x: 0.2,
-        y: 1,
-        z: 2.95,
-        duration: 0.5,
-        ease: "power1.out",
-      },
-      0.5
-    );
+    // Group position and rotation based on screen size
+    tl.current.to(group.current.position, groupPosition, 0.5);
+    tl.current.to(group.current.rotation, groupRotation, 0.5);
 
-    // tl.current.to(
-    //   group.current.rotation,
-    //   {
-    //     y: -4.38,
-    //     x: 0.3,
-    //     z: 0.9,
-    //   },
-    //   0.5
-    // ); //large screen
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -4.25,
-        x: 0.8,
-        z: 0.8,
-      },
-      0.5
-    ); //small screen
+    // Additional animations after page 3
+    tl.current.to(group.current.rotation, { x: -0.2, z: 0.3 }, 1);
+    tl.current.to(group.current.position, { y: -0.9, x: 1.2, z: 3.9 }, 1);
+    tl.current.to(group.current.rotation, { y: -5.9, x: -0.2 }, 1.5);
+    tl.current.to(group.current.position, { z: 6, x: 0.88, y: -0.8 }, 1.5);
 
-    //after page3
-    tl.current.to(
-      group.current.rotation,
-      {
-        x: -0.2,
-        z: 0.3,
-        // y: 0.41,
-      },
-      1
-    );
+    // Projects animation
+    tl.current.to(group.current.position, { z: 5.5, x: 2 }, 2);
+    tl.current.to(group.current.rotation, { y: -4.4, x: -0.2 }, 2);
+  };
 
-    tl.current.to(
-      group.current.position,
-      {
-        y: -0.9,
-        x: 1.2,
-        z: 3.9,
-      },
-      1
-    );
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -5.9,
-        x: -0.2,
-      },
-      1.5
-    );
-    tl.current.to(
-      group.current.position,
-      {
-        z: 6,
-        x: 0.88,
-        y: -0.8,
-      },
-      1.5
-    );
+  useEffect(() => {
+    initTimeline();
+  }, [isSmallScreen]);
 
-    //projects animation
-
-    tl.current.to(
-      group.current.position,
-      {
-        z: 5.5,
-        x: 2,
-      },
-      2
-    );
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -4.4,
-        x: -0.2,
-      },
-      2
-    );
-  });
   const texture = useTexture("/img.avif");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
-  const blankBlackMaterial = new THREE.MeshBasicMaterial({
-    color: "#C6AC8F",
-  });
+  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
   const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
   return (
     <>
@@ -287,25 +175,50 @@ export default function Codinggg(props) {
             />
             <mesh
               name="Object_15"
+              position={[0.7, -0.3, 0]}
+              geometry={nodes.Object_15.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+            />
+            <mesh
+              name="Object_15"
+              position={[0, 0.12, 0]}
+              geometry={nodes.Object_15.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+            />
+            <mesh
+              name="Object_15"
+              position={[-0.12, -0.076, 0]}
+              geometry={nodes.Object_15.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+            />
+            <mesh
+              name="Object_15"
+              position={[0.58, -0.5, 0]}
+              geometry={nodes.Object_15.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+            />
+            <mesh
+              name="Object_15"
               geometry={nodes.Object_15.geometry}
               material={blankWhiteMaterial} // Apply the blank material
             />
             {/* Add dynamic text */}
 
-            <group position={[-0.58, 0.36, 0]}>
+            <group position={[-0.42, 0.25, 0]}>
               <mesh
                 position={[-1.52, -5.3, 1.89]}
                 rotation={[0, 0, -2.1]}
                 scale={[0.3, 0.4, 0.3]}
               >
-                <planeGeometry args={[1, 1]} /> {/* Explicit width/height */}
+                <planeGeometry args={[1.6, 1.1]} />{" "}
+                {/* Explicit width/height */}
                 <meshBasicMaterial map={texture} />
               </mesh>
 
               <Text
                 position={[-1.1, -5.5, 1.89]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.14}
+                fontSize={0.132}
                 // font={fontURL}
                 color="black"
                 anchorX="center"
@@ -328,7 +241,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2, -4.9, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.078}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -338,7 +251,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.12, -4.83, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.067}
+                fontSize={0.0735}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -348,7 +261,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.24, -4.77, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.077}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -359,7 +272,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.36, -4.7, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.077}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -367,9 +280,9 @@ export default function Codinggg(props) {
                 and determination, never using external platforms, and built his
               </Text>
               <Text
-                position={[-2.48, -4.65, 1.87]} // Slightly above the surface
+                position={[-2.47, -4.63, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.078}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -377,9 +290,9 @@ export default function Codinggg(props) {
                 skills from the ground up. His journey reflects resilience and a
               </Text>
               <Text
-                position={[-2.6, -4.59, 1.87]} // Slightly above the surface
+                position={[-2.59, -4.58, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.078}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -389,7 +302,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.76, -4.59, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.07}
+                fontSize={0.078}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
