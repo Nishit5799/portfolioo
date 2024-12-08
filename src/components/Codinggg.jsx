@@ -22,7 +22,8 @@ export default function Codinggg(props) {
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [lightIntensity, setLightIntensity] = useState(0.5);
-
+  const position = isSmallScreen ? [-1, -5.34, 1.89] : [-1.2, -5.5, 1.89];
+  const fontSize = isSmallScreen ? 0.132 : 0.15;
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
@@ -45,7 +46,7 @@ export default function Codinggg(props) {
       : { x: 30, y: -9 }; // Large screen positions
 
     const groupPosition = isSmallScreen
-      ? { x: 0.435, y: 0.71, z: 3.47 } // Small screen position
+      ? { x: 0.435, y: 0.71, z: 3.45 } // Small screen position
       : { x: 0.6, y: 0.96, z: 3.34 }; // Large screen position
 
     const groupRotation = isSmallScreen
@@ -204,7 +205,7 @@ export default function Codinggg(props) {
             />
             {/* Add dynamic text */}
 
-            <group position={[-0.42, 0.25, 0]}>
+            <group position={[-0.37, 0.25, 0]} rotation={[0, 0.02, -0.01]}>
               <mesh
                 position={[-1.52, -5.3, 1.89]}
                 rotation={[0, 0, -2.1]}
@@ -216,10 +217,9 @@ export default function Codinggg(props) {
               </mesh>
 
               <Text
-                position={[-1.1, -5.5, 1.89]} // Slightly above the surface
+                position={position}
                 rotation={[0, 0, -2.1]}
-                fontSize={0.132}
-                // font={fontURL}
+                fontSize={fontSize}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -228,7 +228,7 @@ export default function Codinggg(props) {
               </Text>
 
               <Text
-                position={[-1.81, -5.1, 1.89]} // Slightly above the surface
+                position={[-1.81, -5.05, 1.89]}
                 rotation={[0, 0, -2.1]}
                 fontSize={0.15}
                 // font={fontURL}
@@ -241,73 +241,82 @@ export default function Codinggg(props) {
               <Text
                 position={[-2, -4.9, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.078}
+                fontSize={0.086}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                A self-taught frontend developer with a passion for coding and
+                A self-taught frontend developer with a passion
               </Text>
               <Text
                 position={[-2.12, -4.83, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.0735}
+                fontSize={0.0788}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                problem-solving, who spent two years mastering web development
+                for coding and problem-solving, who spent two years
               </Text>
               <Text
                 position={[-2.24, -4.77, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.077}
+                fontSize={0.081}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                independently. During this time, he relied solely on his
-                curiosity
+                mastering web development independently. During
               </Text>
               <Text
-                position={[-2.36, -4.7, 1.87]} // Slightly above the surface
+                position={[-2.36, -4.71, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.077}
+                fontSize={0.082}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                and determination, never using external platforms, and built his
+                this time, he relied solely on his curiosity and
               </Text>
               <Text
-                position={[-2.47, -4.63, 1.87]} // Slightly above the surface
+                position={[-2.47, -4.64, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.078}
+                fontSize={0.082}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                skills from the ground up. His journey reflects resilience and a
+                determination, never using external platforms, and
               </Text>
               <Text
                 position={[-2.59, -4.58, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.078}
+                fontSize={0.083}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                deep understanding of creating intuitive, user-friendly websites
+                built his skills from the ground up. His journey
               </Text>
               <Text
-                position={[-2.76, -4.59, 1.87]} // Slightly above the surface
+                position={[-2.7, -4.51, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.078}
+                fontSize={0.083}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                from scratch.
+                reflects resilience and a deep understanding of
+              </Text>
+              <Text
+                position={[-2.79, -4.43, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.083}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                user-friendly websites.
               </Text>
             </group>
             <mesh
