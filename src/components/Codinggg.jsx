@@ -50,7 +50,7 @@ export default function Codinggg(props) {
       : { x: 0.6, y: 0.96, z: 3.34 }; // Large screen position
 
     const groupRotation = isSmallScreen
-      ? { y: -4.1, x: 0.8, z: 0.81 } // Small screen rotation
+      ? { y: -4.1, x: 0.8, z: 0.9 } // Small screen rotation
       : { y: -4.38, x: 0.3, z: 0.9 }; // Large screen rotation
 
     tl.current.clear();
@@ -106,6 +106,22 @@ export default function Codinggg(props) {
     // Projects animation
     tl.current.to(group.current.position, { z: 5.5, x: 2 }, 2);
     tl.current.to(group.current.rotation, { y: -4.4, x: -0.2 }, 2);
+
+    //contact me animation
+    tl.current.to(
+      group.current.position,
+      {
+        z: 4.9,
+      },
+      2.5
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -2.5,
+      },
+      2.5
+    );
   };
 
   useEffect(() => {
@@ -353,7 +369,7 @@ export default function Codinggg(props) {
               <Text
                 position={[10, 12.45, 9.4]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.33} // Adjust size of the text
+                fontSize={0.45} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -364,7 +380,7 @@ export default function Codinggg(props) {
               <Text
                 position={[9, 12.45, 8.3]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.25]} // Align with Object_19
-                fontSize={0.22} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -375,7 +391,7 @@ export default function Codinggg(props) {
               <Text
                 position={[10, 12.45, 8.3]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.24} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -386,7 +402,7 @@ export default function Codinggg(props) {
               <Text
                 position={[11, 12.45, 8.14]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.22} // Adjust size of the text
+                fontSize={0.25} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -397,7 +413,7 @@ export default function Codinggg(props) {
               <Text
                 position={[9, 12.45, 7.1]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
-                fontSize={0.26} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -419,7 +435,7 @@ export default function Codinggg(props) {
               <Text
                 position={[11, 12.45, 7.05]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.26} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -430,7 +446,7 @@ export default function Codinggg(props) {
               <Text
                 position={[9, 12.45, 5.9]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.33]} // Align with Object_19
-                fontSize={0.24} // Adjust size of the text
+                fontSize={0.27} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -439,9 +455,9 @@ export default function Codinggg(props) {
                 MONGODB
               </Text>
               <Text
-                position={[10, 12.45, 5.9]} // Adjust position to place above Object_19
+                position={[10, 12.49, 5.9]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
-                fontSize={0.25} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -452,7 +468,7 @@ export default function Codinggg(props) {
               <Text
                 position={[11, 12.45, 5.9]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
-                fontSize={0.26} // Adjust size of the text
+                fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
                 anchorY="middle"
@@ -510,6 +526,14 @@ export default function Codinggg(props) {
               geometry={nodes.Object_20.geometry}
               material={materials.lambert12SG}
             />
+            <mesh
+              name="Object_20"
+              geometry={nodes.Object_20.geometry}
+              material={blankWhiteMaterial} // Apply the blank material
+              position={[1, 1, 1]}
+              rotation={[0, 0, 0]}
+            />
+
             <mesh
               name="Object_21"
               geometry={nodes.Object_21.geometry}
