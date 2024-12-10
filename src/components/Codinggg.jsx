@@ -642,6 +642,78 @@ export default function Codinggg(props) {
           </group>
 
           <VideoMesh />
+          <group>
+            {/* Main mesh */}
+            <mesh
+              name="Plane"
+              castShadow
+              receiveShadow
+              position={[0, 1.45, 2.9]}
+              rotation={[-3.2, -0.023, 0.028]}
+              scale={[0.777, 0.577, 0.427]}
+              material={blankBlackMaterial}
+            >
+              <planeGeometry args={[2.5, 2]} />
+            </mesh>
+            {/* Text Component */}
+            <Text
+              position={[0, 1.94, 2.85]} // Position the text slightly above the plane
+              rotation={[-0.1, Math.PI, 0]}
+              fontSize={0.1} // Adjust size
+              color="black" // Text color
+              anchorX="center" // Horizontal alignment
+              anchorY="middle" // Vertical alignment
+              maxWidth={1.5} // Restrict text width
+            >
+              Contact Me!
+            </Text>
+            <Text
+              position={[0.7, 1.6, 2.85]} // Position the text slightly above the plane
+              rotation={[-0.1, Math.PI, 0]}
+              fontSize={0.05} // Adjust size
+              color="black" // Text color
+              anchorX="center" // Horizontal alignment
+              anchorY="middle" // Vertical alignment
+              maxWidth={1.5} // Restrict text width
+            >
+              Gmail :
+            </Text>
+
+            <Text
+              position={[0.38, 1.599, 2.85]} // Position the text slightly above the plane
+              rotation={[-0.1, Math.PI, 0]}
+              fontSize={0.04} // Adjust size
+              color="black" // Initial text color
+              anchorX="center" // Horizontal alignment
+              anchorY="middle" // Vertical alignment
+              maxWidth={1.5} // Restrict text width
+              onClick={() =>
+                window.open(
+                  "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
+                  "_blank"
+                )
+              } // Open Gmail compose with prefilled email address
+              onPointerOver={(e) => {
+                gsap.to(e.object.material.color, {
+                  r: 0,
+                  g: 0,
+                  b: 1,
+                  duration: 0.5,
+                }); // Smoothly transition to blue
+              }}
+              onPointerOut={(e) => {
+                gsap.to(e.object.material.color, {
+                  r: 0,
+                  g: 0,
+                  b: 0,
+                  duration: 0.5,
+                }); // Smoothly transition back to black
+              }}
+              cursor="pointer" // Show pointer cursor
+            >
+              lugun.nishit@gmail.com
+            </Text>
+          </group>
         </group>
       </group>
     </>
