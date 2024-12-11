@@ -642,24 +642,24 @@ export default function Codinggg(props) {
           </group>
 
           <VideoMesh />
-          <group>
-            {/* Main mesh */}
-            <mesh
-              name="Plane"
-              castShadow
-              receiveShadow
-              position={[0, 1.45, 2.9]}
-              rotation={[-3.2, -0.023, 0.028]}
-              scale={[0.777, 0.577, 0.427]}
-              material={blankBlackMaterial}
-            >
-              <planeGeometry args={[2.5, 2]} />
-            </mesh>
+          {/* Main mesh */}
+          <mesh
+            name="Plane"
+            castShadow
+            receiveShadow
+            position={[-0.3, 1.46, 2.9]}
+            rotation={[-3.2, -0.023, 0.028]}
+            scale={[0.777, 0.577, 0.427]}
+            material={blankBlackMaterial}
+          >
+            <planeGeometry args={[1.2, 1.7]} />
+          </mesh>
+          <group position={[0.05, -0.15, 0]}>
             {/* Text Component */}
             <Text
-              position={[0, 1.94, 2.85]} // Position the text slightly above the plane
-              rotation={[-0.1, Math.PI, 0]}
-              fontSize={0.1} // Adjust size
+              position={[-0.3, 1.94, 2.85]} // Position the text slightly above the plane
+              rotation={[-0.1, Math.PI, 0.039]}
+              fontSize={0.12} // Adjust size
               color="black" // Text color
               anchorX="center" // Horizontal alignment
               anchorY="middle" // Vertical alignment
@@ -667,52 +667,184 @@ export default function Codinggg(props) {
             >
               Contact Me!
             </Text>
-            <Text
-              position={[0.7, 1.6, 2.85]} // Position the text slightly above the plane
-              rotation={[-0.1, Math.PI, 0]}
-              fontSize={0.05} // Adjust size
-              color="black" // Text color
-              anchorX="center" // Horizontal alignment
-              anchorY="middle" // Vertical alignment
-              maxWidth={1.5} // Restrict text width
-            >
-              Gmail :
-            </Text>
+            <group position={[-0.89, 0.17, 0]} rotation={[0, 0, -0.03]}>
+              <Text
+                position={[0.73, 1.6, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.07} // Adjust size
+                color="black" // Text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+              >
+                • Gmail
+              </Text>
 
-            <Text
-              position={[0.38, 1.599, 2.85]} // Position the text slightly above the plane
-              rotation={[-0.1, Math.PI, 0]}
-              fontSize={0.04} // Adjust size
-              color="black" // Initial text color
-              anchorX="center" // Horizontal alignment
-              anchorY="middle" // Vertical alignment
-              maxWidth={1.5} // Restrict text width
-              onClick={() =>
-                window.open(
-                  "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
-                  "_blank"
-                )
-              } // Open Gmail compose with prefilled email address
-              onPointerOver={(e) => {
-                gsap.to(e.object.material.color, {
-                  r: 0,
-                  g: 0,
-                  b: 1,
-                  duration: 0.5,
-                }); // Smoothly transition to blue
-              }}
-              onPointerOut={(e) => {
-                gsap.to(e.object.material.color, {
-                  r: 0,
-                  g: 0,
-                  b: 0,
-                  duration: 0.5,
-                }); // Smoothly transition back to black
-              }}
-              cursor="pointer" // Show pointer cursor
-            >
-              lugun.nishit@gmail.com
-            </Text>
+              <Text
+                position={[0.33, 1.594, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.05} // Adjust size
+                color="black" // Initial text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+                onClick={() =>
+                  window.open(
+                    "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
+                    "_blank"
+                  )
+                } // Open Gmail compose with prefilled email address
+                onPointerOver={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 1,
+                    duration: 0.5,
+                  }); // Smoothly transition to blue
+                }}
+                onPointerOut={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    duration: 0.5,
+                  }); // Smoothly transition back to black
+                }}
+                cursor="pointer" // Show pointer cursor
+              >
+                Click here
+              </Text>
+
+              <Text
+                position={[0.72, 1.45, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.07} // Adjust size
+                color="black" // Text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+              >
+                • Github
+              </Text>
+              <Text
+                position={[0.34, 1.44, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.049} // Adjust size
+                color="black" // Initial text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+                onClick={() =>
+                  window.open("https://github.com/Nishit5799", "_blank")
+                } // Open Gmail compose with prefilled email address
+                onPointerOver={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 1,
+                    duration: 0.5,
+                  }); // Smoothly transition to blue
+                }}
+                onPointerOut={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    duration: 0.5,
+                  }); // Smoothly transition back to black
+                }}
+                cursor="pointer" // Show pointer cursor
+              >
+                Click here
+              </Text>
+              <Text
+                position={[0.7, 1.3, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.07} // Adjust size
+                color="black" // Text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+              >
+                • LinkedIn
+              </Text>
+              <Text
+                position={[0.34, 1.295, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.049} // Adjust size
+                color="black" // Initial text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+                onClick={() =>
+                  window.open(
+                    "www.linkedin.com/in/nishit-lugun-b15a35257",
+                    "_blank"
+                  )
+                } // Open Gmail compose with prefilled email address
+                onPointerOver={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 1,
+                    duration: 0.5,
+                  }); // Smoothly transition to blue
+                }}
+                onPointerOut={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    duration: 0.5,
+                  }); // Smoothly transition back to black
+                }}
+                cursor="pointer" // Show pointer cursor
+              >
+                Click here
+              </Text>
+              <Text
+                position={[0.69, 1.16, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.067} // Adjust size
+                color="black" // Text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+              >
+                • Instagram
+              </Text>
+              <Text
+                position={[0.346, 1.16, 2.85]} // Position the text slightly above the plane
+                rotation={[-0.1, Math.PI, 0]}
+                fontSize={0.049} // Adjust size
+                color="black" // Initial text color
+                anchorX="center" // Horizontal alignment
+                anchorY="middle" // Vertical alignment
+                maxWidth={1.5} // Restrict text width
+                onClick={() =>
+                  window.open("https://instagram.com/_nisheeeet_", "_blank")
+                } // Open Gmail compose with prefilled email address
+                onPointerOver={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 1,
+                    duration: 0.5,
+                  }); // Smoothly transition to blue
+                }}
+                onPointerOut={(e) => {
+                  gsap.to(e.object.material.color, {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    duration: 0.5,
+                  }); // Smoothly transition back to black
+                }}
+                cursor="pointer" // Show pointer cursor
+              >
+                Click here
+              </Text>
+            </group>
           </group>
         </group>
       </group>

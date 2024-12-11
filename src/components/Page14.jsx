@@ -28,25 +28,25 @@ const Page14 = () => {
 
         {projName.map((proj, i) => {
           return (
-            <div className="px-3 w-[100%]">
-              <div
-                key={i}
-                className="project relative font-choco text-black sm:bg-white/50 mb-[5vw] sm:-mb-[0.8vw] bg-white/80 sm:mt-[3.4vw] flex items-center sm:w-[50%] w-full overflow-hidden mx-auto justify-between sm:px-10 px-6 rounded-full group transition-transform duration-500 ease-out sm:hover:scale-110 hover:scale-105"
-              >
-                <div className="overlay absolute -left-[208%] top-0 sm:w-[200vw] w-[380vw] h-full sm:bg-white/80 bg-white/50 transform sm:-rotate-45 -rotate-90 transition-transform duration-500 ease-in-out sm:group-hover:rotate-0 group-hover:rotate-0"></div>
-                <h1 className="sm:text-[2.4vw] text-[6.5vw] z-10">
-                  {proj.name}
-                </h1>
-                <h1 className="sm:text-[1.7vw] text-[4.5vw] absolute sm:text-center sm:left-[0] left-[37%] w-full z-10">
-                  {proj.tech} used
-                </h1>
-                <Link href={proj.link} className="z-10">
+            <Link href={proj.link} className="w-full h-full z-10">
+              <div className="px-3 w-[100%]">
+                <div
+                  key={i}
+                  className="project relative font-choco text-black sm:bg-white/50 mb-[5vw] sm:-mb-[0.8vw] bg-white/80 sm:mt-[3.4vw] flex items-center sm:w-[50%] w-full overflow-hidden mx-auto justify-between sm:px-10 px-6 rounded-full group transition-transform duration-500 ease-out sm:hover:scale-110 hover:scale-105"
+                >
+                  <div className="overlay absolute -left-[208%] top-0 sm:w-[200vw] w-[380vw] h-full sm:bg-white/80 bg-white/50 transform sm:-rotate-45 -rotate-90 transition-transform duration-500 ease-in-out sm:group-hover:rotate-0 group-hover:rotate-0"></div>
+                  <h1 className="sm:text-[2.4vw] text-[6.5vw] z-10">
+                    {proj.name}
+                  </h1>
+                  <h1 className="sm:text-[1.7vw] text-[4.5vw] absolute sm:text-center sm:left-[0] left-[37%] w-full z-10">
+                    {proj.tech} used
+                  </h1>
                   <h1 className="sm:text-[1.8vw] text-[4.5vw] text-black z-10">
                     Click to open
                   </h1>
-                </Link>
+                </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>
