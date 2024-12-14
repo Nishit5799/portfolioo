@@ -6,10 +6,12 @@ import React from "react";
 import ScrollContainer from "./ScrollContainer";
 // import { Environment } from "@react-three/drei";
 import BgScene from "./BgScene";
+import Navbar from "./Navbar";
 
 const MainCanvas = () => {
   return (
     <div className="w-full h-screen fixed top-0 left-0">
+      <Navbar />
       <Canvas
         shadows
         dpr={[1, 2]}
