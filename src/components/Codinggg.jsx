@@ -6,7 +6,7 @@ import {
   Text,
   useTexture,
 } from "@react-three/drei";
-import { useGSAP } from "@gsap/react";
+// import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -17,11 +17,11 @@ export default function Codinggg(props) {
   const { nodes, materials, animations } = useGLTF("/untitled.gltf");
   const { actions } = useAnimations(animations, group);
   const gateref = useRef(null);
-  const lightref = useRef(null);
+  // const lightref = useRef(null);
   const tl = useRef(gsap.timeline());
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [lightIntensity, setLightIntensity] = useState(0.5);
+  // const [lightIntensity, setLightIntensity] = useState(0.5);
   const position = isSmallScreen ? [-1, -5.34, 1.89] : [-1.2, -5.5, 1.89];
   const fontSize = isSmallScreen ? 0.132 : 0.15;
   useEffect(() => {
@@ -61,37 +61,7 @@ export default function Codinggg(props) {
     tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
     tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
 
-    tl.current.to(
-      lightref.current,
-      { intensity: 4, ease: "power1.inOut" },
-      ">0.01"
-    );
-    tl.current.to(
-      lightref.current,
-      { intensity: 0, duration: 0.11, ease: "power1.inOut" },
-      "0.01"
-    );
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: gsap.utils.random(3, 10),
-        duration: 0.1,
-        repeat: 6,
-        yoyo: true,
-        ease: "none",
-      },
-      "0.001"
-    );
-    tl.current.to(
-      lightref.current,
-      {
-        intensity: 11,
-        duration: 0.5,
-        ease: "linear",
-        onUpdate: () => setLightIntensity(lightref.current.intensity),
-      },
-      "0.1"
-    );
+    //here for the code in bottom
 
     // Group position and rotation based on screen size
     tl.current.to(group.current.position, groupPosition, 0.5);
@@ -111,14 +81,16 @@ export default function Codinggg(props) {
     tl.current.to(
       group.current.position,
       {
-        z: 4.9,
+        z: 5.2,
+        y: -0.4,
       },
       2.5
     );
     tl.current.to(
       group.current.rotation,
       {
-        y: -2.5,
+        y: -2.68,
+        z: -0.01,
       },
       2.5
     );
@@ -134,7 +106,7 @@ export default function Codinggg(props) {
   const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
   return (
     <>
-      <ambientLight ref={lightref} intensity={lightIntensity} />
+      {/* <ambientLight ref={lightref} intensity={lightIntensity} /> */}
       {/* <ambientLight intensity={3} /> */}
       <group
         ref={group}
@@ -184,6 +156,7 @@ export default function Codinggg(props) {
               geometry={nodes.Object_14.geometry}
               material={materials.lambert22SG}
             />
+
             <mesh
               name="Object_15"
               position={[0.5, -0.3, 0]}
@@ -657,9 +630,10 @@ export default function Codinggg(props) {
           <group position={[0.05, -0.15, 0]}>
             {/* Text Component */}
             <Text
-              position={[-0.3, 1.94, 2.85]} // Position the text slightly above the plane
+              position={[-0.33, 1.94, 2.85]} // Position the text slightly above the plane
               rotation={[-0.1, Math.PI, 0.039]}
-              fontSize={0.12} // Adjust size
+              fontSize={0.19} // Adjust size
+              font={fontURL}
               color="black" // Text color
               anchorX="center" // Horizontal alignment
               anchorY="middle" // Vertical alignment
@@ -681,7 +655,7 @@ export default function Codinggg(props) {
               </Text>
 
               <Text
-                position={[0.33, 1.594, 2.85]} // Position the text slightly above the plane
+                position={[0.31, 1.594, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.05} // Adjust size
                 color="black" // Initial text color
@@ -727,7 +701,7 @@ export default function Codinggg(props) {
                 • Github
               </Text>
               <Text
-                position={[0.34, 1.44, 2.85]} // Position the text slightly above the plane
+                position={[0.318, 1.44, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.049} // Adjust size
                 color="black" // Initial text color
@@ -758,7 +732,7 @@ export default function Codinggg(props) {
                 Click here
               </Text>
               <Text
-                position={[0.7, 1.3, 2.85]} // Position the text slightly above the plane
+                position={[0.69, 1.3, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.07} // Adjust size
                 color="black" // Text color
@@ -769,7 +743,7 @@ export default function Codinggg(props) {
                 • LinkedIn
               </Text>
               <Text
-                position={[0.34, 1.295, 2.85]} // Position the text slightly above the plane
+                position={[0.32, 1.295, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.049} // Adjust size
                 color="black" // Initial text color
@@ -778,8 +752,7 @@ export default function Codinggg(props) {
                 maxWidth={1.5} // Restrict text width
                 onClick={() =>
                   window.open(
-                    "www.linkedin.com/in/nishit-lugun-b15a35257",
-                    "_blank"
+                    "https://www.linkedin.com/in/nishit-lugun-b15a35257"
                   )
                 } // Open Gmail compose with prefilled email address
                 onPointerOver={(e) => {
@@ -803,7 +776,7 @@ export default function Codinggg(props) {
                 Click here
               </Text>
               <Text
-                position={[0.69, 1.16, 2.85]} // Position the text slightly above the plane
+                position={[0.678, 1.16, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.067} // Adjust size
                 color="black" // Text color
@@ -814,7 +787,7 @@ export default function Codinggg(props) {
                 • Instagram
               </Text>
               <Text
-                position={[0.346, 1.16, 2.85]} // Position the text slightly above the plane
+                position={[0.322, 1.16, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.049} // Adjust size
                 color="black" // Initial text color
@@ -853,3 +826,34 @@ export default function Codinggg(props) {
 }
 
 useGLTF.preload("/untitled.gltf");
+// tl.current.to(
+//   lightref.current,
+//   { intensity: 4, ease: "power1.inOut" },
+//   ">0.01"
+// );
+// tl.current.to(
+//   lightref.current,
+//   { intensity: 0, duration: 0.11, ease: "power1.inOut" },
+//   "0.01"
+// );
+// tl.current.to(
+//   lightref.current,
+//   {
+//     intensity: gsap.utils.random(3, 10),
+//     duration: 0.1,
+//     repeat: 6,
+//     yoyo: true,
+//     ease: "none",
+//   },
+//   "0.001"
+// );
+// tl.current.to(
+//   lightref.current,
+//   {
+//     intensity: 11,
+//     duration: 0.5,
+//     ease: "linear",
+//     onUpdate: () => setLightIntensity(lightref.current.intensity),
+//   },
+//   "0.1"
+// );

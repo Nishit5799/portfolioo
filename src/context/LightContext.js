@@ -1,12 +1,14 @@
-// src/context/LightContext.js
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 // Create Context
-export const LightContext = createContext();
+const LightContext = createContext();
 
-// Create Provider Component
+// Custom hook for using the context
+export const useLight = () => useContext(LightContext);
+
+// Context Provider
 export const LightProvider = ({ children }) => {
-  const [lightIntensity, setLightIntensity] = useState(0.5); // Default light intensity
+  const [lightIntensity, setLightIntensity] = useState(1); // Default intensity
 
   return (
     <LightContext.Provider value={{ lightIntensity, setLightIntensity }}>
