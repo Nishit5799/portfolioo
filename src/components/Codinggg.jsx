@@ -60,6 +60,10 @@ export default function Codinggg(props) {
     tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
     tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
     tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
+    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -3.2 }, 1);
+    tl.current.to(gateref.current.position, { x: 23.7, y: -30.7, z: 0 }, 1);
+    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -1.5 }, 2);
+    tl.current.to(gateref.current.position, { x: 29, y: -4, z: 0 }, 2);
 
     //here for the code in bottom
 
@@ -82,7 +86,8 @@ export default function Codinggg(props) {
       group.current.position,
       {
         z: 5.2,
-        y: -0.4,
+        y: -0.8,
+        x: 1.4,
       },
       2.5
     );
@@ -93,6 +98,15 @@ export default function Codinggg(props) {
         z: -0.01,
       },
       2.5
+    );
+    tl.current.to(
+      group.current.rotation,
+      {
+        y: -3,
+        // x: 0.1,
+        // z: 0.1,
+      },
+      3
     );
   };
 
@@ -620,14 +634,14 @@ export default function Codinggg(props) {
             name="Plane"
             castShadow
             receiveShadow
-            position={[-0.3, 1.46, 2.9]}
+            position={[-0.9, 1.46, 2.9]}
             rotation={[-3.2, -0.023, 0.028]}
             scale={[0.777, 0.577, 0.427]}
             material={blankBlackMaterial}
           >
             <planeGeometry args={[1.2, 1.7]} />
           </mesh>
-          <group position={[0.05, -0.15, 0]}>
+          <group position={[-0.54, -0.15, 0]}>
             {/* Text Component */}
             <Text
               position={[-0.33, 1.94, 2.85]} // Position the text slightly above the plane

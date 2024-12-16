@@ -10,7 +10,8 @@ import Page14 from "./Page14";
 const ScrollContainer = () => {
   return (
     <>
-      <ScrollControls pages={5.96} damping={0.6} infinite>
+      {/* <OrbitControls /> */}
+      <ScrollControls pages={6.96} damping={0.4}>
         <MainScene />
         <Scroll html>
           <Page11 />

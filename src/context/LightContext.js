@@ -8,7 +8,7 @@ export const useLight = () => useContext(LightContext);
 
 // Context Provider
 export const LightProvider = ({ children }) => {
-  const [lightIntensity, setLightIntensity] = useState(1); // Default intensity
+  const [lightIntensity, setLightIntensity] = useState(0); // Default intensity
 
   return (
     <LightContext.Provider value={{ lightIntensity, setLightIntensity }}>

@@ -41,8 +41,8 @@ const Navbar = () => {
   const [isFlickering, setIsFlickering] = useState(false); // Track flickering state
 
   const toggleLight = () => {
-    if (lightIntensity === 7) {
-      setLightIntensity(-2); // Turn off light
+    if (lightIntensity === 5) {
+      setLightIntensity(0); // Turn off light
     } else {
       setIsFlickering(true); // Trigger flickering effect
     }
@@ -50,7 +50,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isFlickering) {
-      const flickerSequence = [0, 3, 0, 4, 0, 5, 0, 6, 0.5, 7]; // Sequence of random intensities
+      const flickerSequence = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5]; // Sequence of random intensities
       let index = 0;
 
       const flickerInterval = setInterval(() => {
