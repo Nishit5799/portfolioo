@@ -28,7 +28,7 @@ const Page14 = () => {
 
         {projName.map((proj, i) => {
           return (
-            <Link href={proj.link} className="w-full h-full z-10">
+            <Link href={proj.link} className="w-full h-full sm:h-fit  z-10">
               <div className="px-3 w-[100%]">
                 <div
                   key={i}

@@ -102,11 +102,27 @@ export default function Codinggg(props) {
     tl.current.to(
       group.current.rotation,
       {
-        y: -3,
-        // x: 0.1,
-        // z: 0.1,
+        y: -3.1,
       },
       3
+    );
+    tl.current.to(
+      group.current.position,
+      {
+        z: 5.5,
+        x: 3.5,
+        y: 0,
+      },
+      3
+    );
+    tl.current.to(
+      group.current.position,
+      {
+        z: 8,
+        x: 4.2,
+        y: 0,
+      },
+      3.5
     );
   };
 
@@ -115,6 +131,7 @@ export default function Codinggg(props) {
   }, [isSmallScreen]);
 
   const texture = useTexture("/img.avif");
+  const texture1 = useTexture("/exit.jpg");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
   const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
   const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
@@ -831,6 +848,24 @@ export default function Codinggg(props) {
               >
                 Click here
               </Text>
+              <mesh
+                name="Plane"
+                castShadow
+                receiveShadow
+                position={[2.8, 1.46, 2.9]}
+                rotation={[-3.1, -0.023, 0.028]}
+                scale={[0.777, 0.577, 0.427]}
+                // material={blankBlackMaterial}
+              >
+                <planeGeometry args={[0.6, 0.3]} />
+                <meshStandardMaterial
+                  map={texture1} // Use the texture as the base map
+                  emissiveMap={texture1} // Use the same texture for emissive
+                  emissive="white" // Emit the light based on the texture
+                  emissiveIntensity={1.5} // Adjust the glow intensity
+                  toneMapped={false} // Ensure colors appear correctly, ignoring HDR tone mapping
+                />
+              </mesh>
             </group>
           </group>
         </group>
