@@ -6,7 +6,7 @@ import {
   Text,
   useTexture,
 } from "@react-three/drei";
-// import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap/all";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -17,11 +17,11 @@ export default function Codinggg(props) {
   const { nodes, materials, animations } = useGLTF("/untitled.gltf");
   const { actions } = useAnimations(animations, group);
   const gateref = useRef(null);
-  // const lightref = useRef(null);
+
   const tl = useRef(gsap.timeline());
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  // const [lightIntensity, setLightIntensity] = useState(0.5);
+
   const position = isSmallScreen ? [-1, -5.34, 1.89] : [-1.2, -5.5, 1.89];
   const fontSize = isSmallScreen ? 0.132 : 0.15;
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Codinggg(props) {
       setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
     };
     window.addEventListener("resize", handleResize);
-    handleResize(); // Check screen size on mount
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -39,20 +39,31 @@ export default function Codinggg(props) {
     }
   });
 
-  // Set dynamic positions and initialize GSAP timeline
   const initTimeline = () => {
     const gaterefPositions = isSmallScreen
-      ? { x: 29.7, y: -7 } // Small screen positions
-      : { x: 30, y: -9 }; // Large screen positions
+      ? { x: 29.7, y: -7 }
+      : { x: 30, y: -9 };
 
     const groupPosition = isSmallScreen
-      ? { x: 0.435, y: 0.71, z: 3.45 } // Small screen position
-      : { x: 0.6, y: 0.96, z: 3.34 }; // Large screen position
+      ? { x: 0.435, y: 0.71, z: 3.45 }
+      : { x: 0.6, y: 0.96, z: 3.34 };
 
     const groupRotation = isSmallScreen
-      ? { y: -4.1, x: 0.8, z: 0.9 } // Small screen rotation
-      : { y: -4.38, x: 0.3, z: 0.9 }; // Large screen rotation
+      ? { y: -4.1, x: 0.8, z: 0.9 }
+      : { y: -4.38, x: 0.3, z: 0.9 };
 
+    const smallScreenRotation = { y: -3 };
+    const largeScreenRotation = { y: -3 };
+
+    const smallScreenPosition = { z: 5.2, x: 3.8, y: -0.2 };
+    const largeScreenPosition = { z: 5.5, x: 3.5, y: 0 };
+
+    const rotationValues = isSmallScreen
+      ? smallScreenRotation
+      : largeScreenRotation;
+    const positionValues = isSmallScreen
+      ? smallScreenPosition
+      : largeScreenPosition;
     tl.current.clear();
 
     tl.current.to(group.current.position, { z: 3, x: -0.9, y: 0.1 }, 0);
@@ -60,14 +71,29 @@ export default function Codinggg(props) {
     tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
     tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
     tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
-    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -3.2 }, 1);
-    tl.current.to(gateref.current.position, { x: 23.7, y: -30.7, z: 0 }, 1);
-    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -1.5 }, 2);
-    tl.current.to(gateref.current.position, { x: 29, y: -4, z: 0 }, 2);
+    tl.current.to(
+      gateref.current.rotation,
+      { x: 0, y: 0, z: -3.2, ease: "linear" },
+      0.6
+    );
+    tl.current.to(
+      gateref.current.position,
+      { x: 23.7, y: -30.7, z: 0, ease: "linear" },
+      0.6
+    );
 
-    //here for the code in bottom
+    tl.current.to(
+      gateref.current.position,
+      { x: 33.9, y: -15.5, z: 0, ease: "linear" },
+      3
+    );
 
-    // Group position and rotation based on screen size
+    tl.current.to(
+      gateref.current.rotation,
+      { x: 0, y: 0, z: -2.12, ease: "linear" },
+      3
+    );
+
     tl.current.to(group.current.position, groupPosition, 0.5);
     tl.current.to(group.current.rotation, groupRotation, 0.5);
 
@@ -99,27 +125,13 @@ export default function Codinggg(props) {
       },
       2.5
     );
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -3.1,
-      },
-      3
-    );
+    tl.current.to(group.current.rotation, rotationValues, 3);
+    tl.current.to(group.current.position, positionValues, 3);
     tl.current.to(
       group.current.position,
       {
-        z: 5.5,
-        x: 3.5,
-        y: 0,
-      },
-      3
-    );
-    tl.current.to(
-      group.current.position,
-      {
-        z: 8,
-        x: 4.2,
+        z: 9,
+        x: 5,
         y: 0,
       },
       3.5
