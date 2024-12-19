@@ -38,22 +38,23 @@ const Navbar = () => {
     textOverride || (lightIntensity === 5 ? "Turn off light" : "Turn on light");
 
   return (
-    <div className="w-full h-[7vh] fixed z-[1] flex items-center justify-end">
+    <div
+      className="w-full h-[7vh] fixed z-[1] flex items-center justify-end"
+      onClick={toggleLight}
+    >
       <div className="flex items-center sm:mx-20 mx-4 mt-[5vh]">
         {lightIntensity === 5 ? (
           <PiLightbulbLight
             size={30}
             className="sm:w-10 sm:h-10 h-7 w-7 rounded-full p-1 bg-white cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)] hover:scale-110"
-            onClick={toggleLight}
           />
         ) : (
           <PiLightbulbFill
             size={30}
             className="sm:w-10 sm:h-10 h-7 w-7 rounded-full p-1 bg-white cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)] hover:scale-110"
-            onClick={toggleLight}
           />
         )}
-        <h1 className="ml-4 sm:text-[1vw] text-[3vw] font-semibold text-white transition-opacity duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)]">
+        <h1 className="ml-4 sm:text-[1vw] cursor-pointer text-[3vw] font-semibold text-white transition-opacity duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)]">
           {lightStatusText}
         </h1>
       </div>
