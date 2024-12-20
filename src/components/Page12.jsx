@@ -1,11 +1,12 @@
 import React from "react";
-import { ThreeDCardDemo } from "./Page12_About";
 
 const Page12 = () => {
   return (
-    <div className="w-full h-[100vh] ">
-      <ThreeDCardDemo />
-    </div>
+    <>
+      <h1 className="page12heading h-[100vh] sm:h-[100vh] sm:w-[80%] sm:rounded-3xl mx-auto px-2 sm:-mt-[5vw] -mt-[30vw] sm:text-[8.5vw] sm:leading-none  text-[18vw] text-center text-outline-black  sm:px-0 text-white/90 font-jelly ">
+        Welcome!{" "}
+      </h1>
+    </>
   );
 };
 

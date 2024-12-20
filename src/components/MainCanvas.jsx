@@ -15,7 +15,7 @@ const MainCanvas = () => {
     // Simulate a delay for loading screen (e.g., while fetching assets or preparing 3D content)
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 10000); // Adjust the time as needed
+    }, 2000); // Adjust the time as needed
 
     return () => clearTimeout(timeout);
   }, []);
