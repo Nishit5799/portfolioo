@@ -33,112 +33,121 @@ export default function Codinggg(props) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useFrame((state, delta) => {
-    if (tl.current) {
-      tl.current.seek(scroll.offset * tl.current.duration());
-    }
+  // useFrame(() => {
+  //   const offset = scroll.offset;
+
+  //   if (offset >= 0.999) {
+  //     gsap.to(scroll.scroll, { current: 0, duration: 1.2, ease: "linear" }); // Smooth reset
+  //     tl.current.seek(0); // Reset the GSAP timeline
+  //   } else {
+  //     tl.current.seek(offset * tl.current.duration());
+  //   }
+  // });
+  useFrame(() => {
+    const offset = scroll.offset;
+
+    tl.current.seek(offset * tl.current.duration());
   });
 
-  const initTimeline = () => {
-    const gaterefPositions = isSmallScreen
-      ? { x: 29.7, y: -7 }
-      : { x: 30, y: -9 };
-
-    const groupPosition = isSmallScreen
-      ? { x: 0.435, y: 0.71, z: 3.45 }
-      : { x: 0.6, y: 0.96, z: 3.34 };
-
-    const groupRotation = isSmallScreen
-      ? { y: -4.1, x: 0.8, z: 0.9 }
-      : { y: -4.38, x: 0.3, z: 0.9 };
-
-    const smallScreenRotation = { y: -3 };
-    const largeScreenRotation = { y: -3 };
-
-    const smallScreenPosition = { z: 5.2, x: 3.8, y: -0.2 };
-    const largeScreenPosition = { z: 5.5, x: 3.5, y: 0 };
-
-    const rotationValues = isSmallScreen
-      ? smallScreenRotation
-      : largeScreenRotation;
-    const positionValues = isSmallScreen
-      ? smallScreenPosition
-      : largeScreenPosition;
-    tl.current.clear();
-
-    tl.current.to(group.current.position, { z: 3, x: -0.9, y: 0.1 }, 0);
-
-    tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
-    tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
-    tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
-    tl.current.to(
-      gateref.current.rotation,
-      { x: 0, y: 0, z: -3.2, ease: "linear" },
-      0.6
-    );
-    tl.current.to(
-      gateref.current.position,
-      { x: 23.7, y: -30.7, z: 0, ease: "linear" },
-      0.6
-    );
-
-    tl.current.to(
-      gateref.current.position,
-      { x: 33.9, y: -15.5, z: 0, ease: "linear" },
-      3
-    );
-
-    tl.current.to(
-      gateref.current.rotation,
-      { x: 0, y: 0, z: -2.12, ease: "linear" },
-      3
-    );
-
-    tl.current.to(group.current.position, groupPosition, 0.5);
-    tl.current.to(group.current.rotation, groupRotation, 0.5);
-
-    // Additional animations after page 3
-    tl.current.to(group.current.rotation, { x: -0.2, z: 0.3 }, 1);
-    tl.current.to(group.current.position, { y: -0.9, x: 1.2, z: 3.9 }, 1);
-    tl.current.to(group.current.rotation, { y: -5.9, x: -0.2 }, 1.5);
-    tl.current.to(group.current.position, { z: 6, x: 0.88, y: -0.8 }, 1.5);
-
-    // Projects animation
-    tl.current.to(group.current.position, { z: 5.5, x: 2 }, 2);
-    tl.current.to(group.current.rotation, { y: -4.4, x: -0.2 }, 2);
-
-    //contact me animation
-    tl.current.to(
-      group.current.position,
-      {
-        z: 5.2,
-        y: -0.8,
-        x: 1.4,
-      },
-      2.5
-    );
-    tl.current.to(
-      group.current.rotation,
-      {
-        y: -2.68,
-        z: -0.01,
-      },
-      2.5
-    );
-    tl.current.to(group.current.rotation, rotationValues, 3);
-    tl.current.to(group.current.position, positionValues, 3);
-    tl.current.to(
-      group.current.position,
-      {
-        z: 9,
-        x: 5,
-        y: 0,
-      },
-      3.5
-    );
-  };
-
   useEffect(() => {
+    const initTimeline = () => {
+      const gaterefPositions = isSmallScreen
+        ? { x: 29.7, y: -7 }
+        : { x: 30, y: -9 };
+
+      const groupPosition = isSmallScreen
+        ? { x: 0.435, y: 0.71, z: 3.45 }
+        : { x: 0.6, y: 0.96, z: 3.34 };
+
+      const groupRotation = isSmallScreen
+        ? { y: -4.1, x: 0.8, z: 0.9 }
+        : { y: -4.38, x: 0.3, z: 0.9 };
+
+      const smallScreenRotation = { y: -3 };
+      const largeScreenRotation = { y: -3 };
+
+      const smallScreenPosition = { z: 5.2, x: 3.8, y: -0.2 };
+      const largeScreenPosition = { z: 5.5, x: 3.5, y: 0 };
+
+      const rotationValues = isSmallScreen
+        ? smallScreenRotation
+        : largeScreenRotation;
+      const positionValues = isSmallScreen
+        ? smallScreenPosition
+        : largeScreenPosition;
+      tl.current.clear();
+
+      tl.current.to(group.current.position, { z: 3, x: -0.9, y: 0.1 }, 0);
+
+      tl.current.to(gateref.current.position, { x: gaterefPositions.x }, 0);
+      tl.current.to(gateref.current.position, { y: gaterefPositions.y }, 0.1);
+      tl.current.to(gateref.current.rotation, { x: 0, y: 0, z: -2 }, 0);
+      tl.current.to(
+        gateref.current.rotation,
+        { x: 0, y: 0, z: -3.2, ease: "linear" },
+        0.6
+      );
+      tl.current.to(
+        gateref.current.position,
+        { x: 23.7, y: -30.7, z: 0, ease: "linear" },
+        0.6
+      );
+
+      tl.current.to(
+        gateref.current.position,
+        { x: 33.9, y: -15.5, z: 0, ease: "linear" },
+        3
+      );
+
+      tl.current.to(
+        gateref.current.rotation,
+        { x: 0, y: 0, z: -2.12, ease: "linear" },
+        3
+      );
+
+      tl.current.to(group.current.position, groupPosition, 0.5);
+      tl.current.to(group.current.rotation, groupRotation, 0.5);
+
+      // Additional animations after page 3
+      tl.current.to(group.current.rotation, { x: -0.2, z: 0.3 }, 1);
+      tl.current.to(group.current.position, { y: -0.9, x: 1.2, z: 3.9 }, 1);
+      tl.current.to(group.current.rotation, { y: -5.9, x: -0.2 }, 1.5);
+      tl.current.to(group.current.position, { z: 6, x: 0.88, y: -0.8 }, 1.5);
+
+      // Projects animation
+      tl.current.to(group.current.position, { z: 5.5, x: 2 }, 2);
+      tl.current.to(group.current.rotation, { y: -4.4, x: -0.2 }, 2);
+
+      //contact me animation
+      tl.current.to(
+        group.current.position,
+        {
+          z: 5.2,
+          y: -0.8,
+          x: 1.4,
+        },
+        2.5
+      );
+      tl.current.to(
+        group.current.rotation,
+        {
+          y: -2.68,
+          z: -0.01,
+        },
+        2.5
+      );
+      tl.current.to(group.current.rotation, rotationValues, 3);
+      tl.current.to(group.current.position, positionValues, 3);
+      tl.current.to(
+        group.current.position,
+        {
+          z: 9,
+          x: 5,
+          y: 0,
+        },
+        3.5
+      );
+    };
     initTimeline();
   }, [isSmallScreen]);
 
@@ -149,8 +158,6 @@ export default function Codinggg(props) {
   const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
   return (
     <>
-      {/* <ambientLight ref={lightref} intensity={lightIntensity} /> */}
-      {/* <ambientLight intensity={3} /> */}
       <group
         ref={group}
         {...props}
@@ -718,6 +725,7 @@ export default function Codinggg(props) {
                     b: 1,
                     duration: 0.5,
                   }); // Smoothly transition to blue
+                  document.body.style.cursor = "pointer"; // Change cursor to pointer
                 }}
                 onPointerOut={(e) => {
                   gsap.to(e.object.material.color, {
@@ -726,8 +734,8 @@ export default function Codinggg(props) {
                     b: 0,
                     duration: 0.5,
                   }); // Smoothly transition back to black
+                  document.body.style.cursor = "default"; // Reset cursor to default
                 }}
-                cursor="pointer" // Show pointer cursor
               >
                 Click here
               </Text>
@@ -761,6 +769,7 @@ export default function Codinggg(props) {
                     b: 1,
                     duration: 0.5,
                   }); // Smoothly transition to blue
+                  document.body.style.cursor = "pointer"; // Change cursor to pointer
                 }}
                 onPointerOut={(e) => {
                   gsap.to(e.object.material.color, {
@@ -769,8 +778,8 @@ export default function Codinggg(props) {
                     b: 0,
                     duration: 0.5,
                   }); // Smoothly transition back to black
+                  document.body.style.cursor = "default"; // Reset cursor to default
                 }}
-                cursor="pointer" // Show pointer cursor
               >
                 Click here
               </Text>
@@ -786,7 +795,7 @@ export default function Codinggg(props) {
                 • LinkedIn
               </Text>
               <Text
-                position={[0.32, 1.295, 2.85]} // Position the text slightly above the plane
+                position={[0.32, 1.295, 2.85]} // Position the text
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.049} // Adjust size
                 color="black" // Initial text color
@@ -797,7 +806,7 @@ export default function Codinggg(props) {
                   window.open(
                     "https://www.linkedin.com/in/nishit-lugun-b15a35257"
                   )
-                } // Open Gmail compose with prefilled email address
+                } // Open the link
                 onPointerOver={(e) => {
                   gsap.to(e.object.material.color, {
                     r: 0,
@@ -805,6 +814,7 @@ export default function Codinggg(props) {
                     b: 1,
                     duration: 0.5,
                   }); // Smoothly transition to blue
+                  document.body.style.cursor = "pointer"; // Change cursor to pointer
                 }}
                 onPointerOut={(e) => {
                   gsap.to(e.object.material.color, {
@@ -813,11 +823,12 @@ export default function Codinggg(props) {
                     b: 0,
                     duration: 0.5,
                   }); // Smoothly transition back to black
+                  document.body.style.cursor = "default"; // Reset cursor to default
                 }}
-                cursor="pointer" // Show pointer cursor
               >
                 Click here
               </Text>
+
               <Text
                 position={[0.678, 1.16, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
@@ -847,6 +858,7 @@ export default function Codinggg(props) {
                     b: 1,
                     duration: 0.5,
                   }); // Smoothly transition to blue
+                  document.body.style.cursor = "pointer"; // Change cursor to pointer
                 }}
                 onPointerOut={(e) => {
                   gsap.to(e.object.material.color, {
@@ -855,8 +867,8 @@ export default function Codinggg(props) {
                     b: 0,
                     duration: 0.5,
                   }); // Smoothly transition back to black
+                  document.body.style.cursor = "default"; // Reset cursor to default
                 }}
-                cursor="pointer" // Show pointer cursor
               >
                 Click here
               </Text>
@@ -879,6 +891,22 @@ export default function Codinggg(props) {
                 />
               </mesh>
             </group>
+            <mesh position={[0.021, 1.75, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
+              <planeGeometry args={[0.08, 0.08]} />
+              <meshBasicMaterial map={useTexture("/gmail.svg")} />
+            </mesh>
+            <mesh position={[0.024, 1.6, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
+              <planeGeometry args={[0.08, 0.08]} />
+              <meshBasicMaterial map={useTexture("/github.png")} />
+            </mesh>
+            <mesh position={[0.02, 1.45, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
+              <planeGeometry args={[0.08, 0.08]} />
+              <meshBasicMaterial map={useTexture("/linkedin.png")} />
+            </mesh>
+            <mesh position={[0.02, 1.315, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
+              <planeGeometry args={[0.08, 0.08]} />
+              <meshBasicMaterial map={useTexture("/instagram.png")} />
+            </mesh>
           </group>
         </group>
       </group>

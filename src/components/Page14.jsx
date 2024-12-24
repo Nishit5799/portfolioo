@@ -6,7 +6,7 @@ const Page14 = () => {
     {
       name: "Gaming Web",
       tech: "React, GSAP, Tailwind",
-      link: "https://arcane-gaming-site.vercel.app/",
+      link: "https://arcane-gaming-site-jlrz.vercel.app/",
     },
     {
       name: "Toy Store",

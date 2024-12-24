@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 
-const Page16 = () => {
+const Page16 = ({ scrollToTop }) => {
   return (
-    <div className="w-full h-[136vh] sm:h-screen  text-white text-center  ">
-      <h1 className="font-jelly sm:text-[6vw] text-[17vw]">THANKYOU!</h1>
+    <div className="w-full relative h-[136vh] sm:h-screen text-white text-center">
+      <h1 className="font-jelly sm:text-[6vw] text-[17vw]">THANK YOU!</h1>
+      <h1
+        className="font-jelly absolute sm:top-[30%] sm:left-[38%] top-[20%] left-[20%] sm:text-[2vw] text-[5vw] cursor-pointer"
+        onClick={scrollToTop} // Trigger the scrollToTop function
+      >
+        Click here to go back to top
+      </h1>
     </div>
   );
 };

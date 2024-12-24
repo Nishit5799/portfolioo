@@ -5,7 +5,7 @@ const BgScene = () => {
   return (
     <mesh>
       <sphereGeometry args={[100, 100, 32, 32]} />
-      <meshStandardMaterial color={"#080510"} side={THREE.DoubleSide} />
+      <meshStandardMaterial color={"white"} side={THREE.DoubleSide} />
     </mesh>
   );
 };
