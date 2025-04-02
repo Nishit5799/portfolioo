@@ -4,22 +4,22 @@ import React from "react";
 const Page14 = () => {
   const projName = [
     {
-      name: "Multiplayer Racing Game",
+      name: "3D Multiplayer Racing Game",
       tech: "React, Three fiber, Rapier, Socket.io ",
       link: "https://multiplayercarracing-production.up.railway.app/",
     },
     {
-      name: "TIC TAC TOE Game",
+      name: "3D TIC TAC TOE",
       tech: "React, Three fiber",
       link: "https://tictactoegame-jxm3.vercel.app/",
     },
     {
-      name: "Free World Movement",
+      name: "Free World Movement Game",
       tech: "React, Three fiber, Rapier",
       link: "https://dust2game-nishit-luguns-projects.vercel.app/",
     },
     {
-      name: "Gaming Web",
+      name: "Gaming Website",
       tech: "React, GSAP, Tailwind",
       link: "https://arcane-gaming-site-jlrz.vercel.app/",
     },
