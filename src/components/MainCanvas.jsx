@@ -77,11 +77,10 @@ const MainCanvas = () => {
     <LightProvider>
       <div className="w-full h-screen fixed top-0 left-0">
         {isLoading && (
-          <div className="loading-screen">
+          <div className="loading-screen w-full h-full flex items-center justify-center">
             <div className="loading-animation">
               {/* Your animation here, e.g., a spinning circle or custom animation */}
-              <div className="spinner"></div>
-              <p className="font-choco">PortFolio Loading...</p>
+              <div className="spinner "></div>
             </div>
           </div>
         )}
@@ -91,7 +90,7 @@ const MainCanvas = () => {
             <Canvas
               shadows
               dpr={[1, 2]}
-              camera={{ fov: 64, position: [1.8, 0.8, 4] }}
+              camera={{ fov: 74, position: [1.8, 0.8, 4] }}
             >
               <ScrollContainer />
             </Canvas>

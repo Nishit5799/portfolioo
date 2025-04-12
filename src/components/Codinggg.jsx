@@ -66,7 +66,7 @@ export default function Codinggg(props) {
       const smallScreenRotation = { y: -3 };
       const largeScreenRotation = { y: -3 };
 
-      const smallScreenPosition = { z: 5.2, x: 3.8, y: -0.2 };
+      const smallScreenPosition = { z: 4.9, x: 3.8, y: -0.2 };
       const largeScreenPosition = { z: 5.5, x: 3.5, y: 0 };
 
       const rotationValues = isSmallScreen
@@ -151,7 +151,7 @@ export default function Codinggg(props) {
     initTimeline();
   }, [isSmallScreen]);
 
-  const texture = useTexture("/img.avif");
+  const texture = useTexture("/portfolio.jpg");
   const texture1 = useTexture("/exit.jpg");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
   const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
@@ -278,84 +278,104 @@ export default function Codinggg(props) {
                 Nishit Lugun
               </Text>
               <Text
-                position={[-2, -4.9, 1.87]} // Slightly above the surface
+                position={[-1.95, -5, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.086}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                A self-taught frontend developer with a passion
+                A self-taught frontend developer with two years of
               </Text>
               <Text
-                position={[-2.12, -4.83, 1.87]} // Slightly above the surface
+                position={[-2.05, -4.92, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.0788}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                for coding and problem-solving, who spent two years
+                dedicated experience in crafting visually stunning and
               </Text>
               <Text
-                position={[-2.24, -4.77, 1.87]} // Slightly above the surface
+                position={[-2.15, -4.85, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.081}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                mastering web development independently. During
+                interactive web experiences. Specializing in both 2D and
               </Text>
               <Text
-                position={[-2.36, -4.71, 1.87]} // Slightly above the surface
+                position={[-2.24, -4.76, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.082}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                this time, he relied solely on his curiosity and
+                3D web development, he builds dynamic websites with
               </Text>
               <Text
-                position={[-2.47, -4.64, 1.87]} // Slightly above the surface
+                position={[-2.36, -4.73, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.082}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                determination, never using external platforms, and
+                fluid animations and immersive designs. Additionally, he
               </Text>
               <Text
-                position={[-2.59, -4.58, 1.87]} // Slightly above the surface
+                position={[-2.47, -4.69, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.083}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                built his skills from the ground up. His journey
+                develops engaging 3D games ranging from offline
               </Text>
               <Text
-                position={[-2.7, -4.51, 1.87]} // Slightly above the surface
+                position={[-2.55, -4.6, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.083}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                reflects resilience and a deep understanding of
+                experiences to multiplayer environments using modern
               </Text>
               <Text
-                position={[-2.79, -4.43, 1.87]} // Slightly above the surface
+                position={[-2.65, -4.55, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
                 fontSize={0.083}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                user-friendly websites.
+                frontend technologies. Passionate about innovation and
+              </Text>
+              <Text
+                position={[-2.76, -4.52, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.083}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                user-centric design, transforming ideas into efficient
+              </Text>
+              <Text
+                position={[-2.89, -4.46, 1.87]} // Slightly above the surface
+                rotation={[0, 0, -2.1]}
+                fontSize={0.083}
+                color="black"
+                anchorX="center"
+                anchorY="middle"
+              >
+                digital realities.
               </Text>
             </group>
             <mesh

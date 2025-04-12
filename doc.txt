@@ -1,0 +1,5 @@
+Nishit Lugun is a skilled frontend developer with two years of dedicated experience in crafting visually stunning and interactive
+ web experiences. Specializing in both 2D and 3D web development, he builds dynamic websites with fluid animations and immersive designs.
+  Additionally, he develops engaging 3D games—ranging from offline experiences to multiplayer environments—using cutting-edge 
+  frontend technologies. Passionate about innovation and user-centric design, Nishit transforms ideas into high-performance digital
+   realities.

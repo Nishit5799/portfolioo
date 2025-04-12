@@ -14,9 +14,9 @@ const Page14 = () => {
       link: "https://tictactoegame-jxm3.vercel.app/",
     },
     {
-      name: "Free World Movement Game",
+      name: "MOBILE DEATHMATCH",
       tech: "React, Three fiber, Rapier",
-      link: "https://dust2game-nishit-luguns-projects.vercel.app/",
+      link: "https://multiplayer-shooting-roan.vercel.app/",
     },
     {
       name: "Gaming Website",
@@ -28,11 +28,7 @@ const Page14 = () => {
       tech: "Nextjs, GSAP, THREE",
       link: "https://toystore-two.vercel.app/",
     },
-    {
-      name: "Studio",
-      tech: "HTML, CSS, JS",
-      link: "https://apex-studio-1s6q.vercel.app/",
-    },
+    
   ];
   return (
     <>
