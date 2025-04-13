@@ -22,8 +22,26 @@ export default function Codinggg(props) {
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const position = isSmallScreen ? [-1, -5.34, 1.89] : [-1.2, -5.5, 1.89];
+  const position = isSmallScreen ? [-1.2, -5.46, 1.89] : [-1.2, -5.5, 1.89];
   const fontSize = isSmallScreen ? 0.132 : 0.15;
+  const positionPhoto = isSmallScreen
+    ? [-1.44, -5.3, 1.89]
+    : [-1.52, -5.3, 1.89];
+  const positionUsername = isSmallScreen
+    ? [-1.77, -5.15, 1.89]
+    : [-1.81, -5.05, 1.89];
+
+  const fontSize1 = isSmallScreen ? 0.092 : 0.086;
+  const fontSize2 = isSmallScreen ? 0.0899 : 0.0788;
+  const fontSize3 = isSmallScreen ? 0.09 : 0.081;
+  const fontSize4 = isSmallScreen ? 0.086 : 0.082;
+  const fontSize5 = isSmallScreen ? 0.09 : 0.082;
+  const fontSize6 = isSmallScreen ? 0.086 : 0.083;
+  const fontSize7 = isSmallScreen ? 0.09 : 0.083;
+  const fontSize8 = isSmallScreen ? 0.09 : 0.083;
+  const fontSize9 = isSmallScreen ? 0.09 : 0.083;
+  const fontSize10 = isSmallScreen ? 0.092 : 0.083;
+
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
@@ -33,16 +51,6 @@ export default function Codinggg(props) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // useFrame(() => {
-  //   const offset = scroll.offset;
-
-  //   if (offset >= 0.999) {
-  //     gsap.to(scroll.scroll, { current: 0, duration: 1.2, ease: "linear" }); // Smooth reset
-  //     tl.current.seek(0); // Reset the GSAP timeline
-  //   } else {
-  //     tl.current.seek(offset * tl.current.duration());
-  //   }
-  // });
   useFrame(() => {
     const offset = scroll.offset;
 
@@ -56,11 +64,11 @@ export default function Codinggg(props) {
         : { x: 30, y: -9 };
 
       const groupPosition = isSmallScreen
-        ? { x: 0.435, y: 0.71, z: 3.45 }
+        ? { x: 0.43, y: 0.71, z: 3.58 }
         : { x: 0.6, y: 0.96, z: 3.34 };
 
       const groupRotation = isSmallScreen
-        ? { y: -4.1, x: 0.8, z: 0.9 }
+        ? { y: -3.9, x: 0.89, z: 1 }
         : { y: -4.38, x: 0.3, z: 0.9 };
 
       const smallScreenRotation = { y: -3 };
@@ -246,7 +254,7 @@ export default function Codinggg(props) {
 
             <group position={[-0.37, 0.25, 0]} rotation={[0, 0.02, -0.01]}>
               <mesh
-                position={[-1.52, -5.3, 1.89]}
+                position={positionPhoto}
                 rotation={[0, 0, -2.1]}
                 scale={[0.3, 0.4, 0.3]}
               >
@@ -267,7 +275,7 @@ export default function Codinggg(props) {
               </Text>
 
               <Text
-                position={[-1.81, -5.05, 1.89]}
+                position={positionUsername}
                 rotation={[0, 0, -2.1]}
                 fontSize={0.15}
                 // font={fontURL}
@@ -280,7 +288,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-1.95, -5, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.086}
+                fontSize={fontSize1}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -290,7 +298,7 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.05, -4.92, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.0788}
+                fontSize={fontSize2}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
@@ -300,82 +308,82 @@ export default function Codinggg(props) {
               <Text
                 position={[-2.15, -4.85, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.081}
+                fontSize={fontSize3}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                interactive web experiences. Specializing in both 2D and
+                interactive web experiences. Specializing in both 2D
               </Text>
               <Text
                 position={[-2.24, -4.76, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.082}
+                fontSize={fontSize4}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                3D web development, he builds dynamic websites with
+                and 3D web development, he builds dynamic websites
               </Text>
               <Text
                 position={[-2.36, -4.73, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.082}
+                fontSize={fontSize5}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                fluid animations and immersive designs. Additionally, he
+                with fluid animations and immersive designs.
               </Text>
               <Text
                 position={[-2.47, -4.69, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.083}
+                fontSize={fontSize6}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                develops engaging 3D games ranging from offline
+                Additionally, he develops engaging 3D games
               </Text>
               <Text
                 position={[-2.55, -4.6, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.083}
+                fontSize={fontSize7}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                experiences to multiplayer environments using modern
+                ranging from offline experiences to multiplayer
               </Text>
               <Text
                 position={[-2.65, -4.55, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.083}
+                fontSize={fontSize8}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                frontend technologies. Passionate about innovation and
+                environments using modern frontend technologies.
               </Text>
               <Text
                 position={[-2.76, -4.52, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.083}
+                fontSize={fontSize9}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                user-centric design, transforming ideas into efficient
+                Passionate about innovation and user-centric design,
               </Text>
               <Text
-                position={[-2.89, -4.46, 1.87]} // Slightly above the surface
+                position={[-2.86, -4.46, 1.87]} // Slightly above the surface
                 rotation={[0, 0, -2.1]}
-                fontSize={0.083}
+                fontSize={fontSize10}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
-                digital realities.
+                transforming ideas into efficient digital realities.
               </Text>
             </group>
             <mesh

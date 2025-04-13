@@ -35,7 +35,8 @@ const Navbar = () => {
   }, [isFlickering, setLightIntensity]);
 
   const lightStatusText =
-    textOverride || (lightIntensity === 5 ? "Turn off light" : "Turn on light");
+    textOverride ||
+    (lightIntensity === 5 ? "turn off light" : "Click here to turn on light");
 
   return (
     <div
