@@ -403,11 +403,7 @@ export default function Codinggg(props) {
               geometry={nodes.Object_18.geometry}
               material={materials.blinn5SG}
             />
-            {/* <mesh
-              name="Object_19"
-              geometry={nodes.Object_19.geometry}
-              material={blankBlackMaterial} // Applying the blank material
-            /> */}
+           
             <group>
               {/* Object 19 */}
               <mesh
@@ -943,34 +939,3 @@ export default function Codinggg(props) {
 }
 
 useGLTF.preload("/untitled.gltf");
-// tl.current.to(
-//   lightref.current,
-//   { intensity: 4, ease: "power1.inOut" },
-//   ">0.01"
-// );
-// tl.current.to(
-//   lightref.current,
-//   { intensity: 0, duration: 0.11, ease: "power1.inOut" },
-//   "0.01"
-// );
-// tl.current.to(
-//   lightref.current,
-//   {
-//     intensity: gsap.utils.random(3, 10),
-//     duration: 0.1,
-//     repeat: 6,
-//     yoyo: true,
-//     ease: "none",
-//   },
-//   "0.001"
-// );
-// tl.current.to(
-//   lightref.current,
-//   {
-//     intensity: 11,
-//     duration: 0.5,
-//     ease: "linear",
-//     onUpdate: () => setLightIntensity(lightref.current.intensity),
-//   },
-//   "0.1"
-// );
