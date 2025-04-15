@@ -21,7 +21,7 @@ const Page14 = () => {
     {
       name: "Gaming Website",
 
-      link: "https://arcane-gaming-site-jlrz.vercel.app/",
+      link: "https://arcane-gaming-site.vercel.app/",
     },
     {
       name: "Toy Store",
