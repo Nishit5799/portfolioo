@@ -139,13 +139,13 @@ export default function Codinggg(props) {
       tl.current.to(
         group.current.rotation,
         {
-          y: -2.68,
-          z: -0.01,
+          y: -2.65,
+          z: -0.03,
         },
-        2.5
+        3
       );
-      tl.current.to(group.current.rotation, rotationValues, 3);
-      tl.current.to(group.current.position, positionValues, 3);
+      tl.current.to(group.current.rotation, rotationValues, 3.5);
+      tl.current.to(group.current.position, positionValues, 3.5);
       tl.current.to(
         group.current.position,
         {
@@ -153,13 +153,13 @@ export default function Codinggg(props) {
           x: 5,
           y: 0,
         },
-        3.5
+        4
       );
     };
     initTimeline();
   }, [isSmallScreen]);
 
-  const texture = useTexture("/portfolio.jpg");
+  const texture = useTexture("/profilepic.jpg");
   const texture1 = useTexture("/exit.jpg");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
   const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
@@ -403,7 +403,7 @@ export default function Codinggg(props) {
               geometry={nodes.Object_18.geometry}
               material={materials.blinn5SG}
             />
-           
+
             <group>
               {/* Object 19 */}
               <mesh
