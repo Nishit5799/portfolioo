@@ -159,7 +159,7 @@ export default function Codinggg(props) {
     initTimeline();
   }, [isSmallScreen]);
 
-  const texture = useTexture("/profile.jpg");
+  const texture = useTexture("/profilepic.png");
   const texture1 = useTexture("/exit.jpg");
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
   const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
