@@ -4,7 +4,7 @@ import React from "react";
 const Page14 = () => {
   const projName = [
     {
-      name: "Nishkart",
+      name: "NishGear",
       link: "https://multiplayercarracing-production.up.railway.app/",
       image: "/racing.jpg",
       description: "Real-time multiplayer racing game with physics engine.",
