@@ -13,7 +13,7 @@ const Page14 = () => {
     },
     {
       name: "Mobile Deathmatch",
-      link: "https://multiplayer-shooting-swart.vercel.app/",
+      link: "https://multiplayer-shooting-plum.vercel.app/",
       image: "/deathmatch.jpg",
       description: "Online multiplayer shooter with mobile controls.",
       Technology:
