@@ -11,10 +11,108 @@ import gsap from "gsap/all";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import VideoMesh from "./VideoMesh";
-
+const SKILLS_DATA = [
+  {
+    name: "html",
+    pos: [9, 12.45, 9],
+    rot: [-1.6, 3.3, 3.2],
+    url: "/html.webp",
+  },
+  {
+    name: "css",
+    pos: [10, 12.45, 9],
+    rot: [-1.6, 3.3, 3.15],
+    url: "/css.webp",
+  },
+  { name: "js", pos: [11, 12.45, 9], rot: [-1.6, 3.3, 3.1], url: "/js.webp" },
+  {
+    name: "react",
+    pos: [9, 12.45, 7.95],
+    rot: [-1.6, 3.3, 3.2],
+    url: "/react.webp",
+  },
+  {
+    name: "three",
+    pos: [10, 12.45, 7.99],
+    rot: [-1.6, 3.3, 3.15],
+    url: "/three.webp",
+  },
+  {
+    name: "gsap",
+    pos: [11, 12.45, 7.98],
+    rot: [-1.6, 3.3, 3.15],
+    url: "/gsap.webp",
+  },
+  {
+    name: "csharp",
+    pos: [9, 12.45, 6.95],
+    rot: [-1.6, 3, 3.1],
+    url: "/csharp.webp",
+  },
+  {
+    name: "unity",
+    pos: [11, 12.45, 6.97],
+    rot: [-1.6, 3.01, 3.06],
+    url: "/unity.webp",
+  },
+  {
+    name: "mongo",
+    pos: [9.3, 12.45, 6.05],
+    rot: [-1.6, 3, 3.1],
+    url: "/mongo.webp",
+  },
+  {
+    name: "git",
+    pos: [10, 12.45, 6.9],
+    rot: [-1.6, 3.01, 3.06],
+    url: "/git.webp",
+  },
+  {
+    name: "node",
+    pos: [10.6, 12.45, 6.05],
+    rot: [-1.6, 3.13, 3.06],
+    url: "/node.webp",
+  },
+];
+const SOCIAL_DATA = [
+  {
+    name: "gmail",
+    pos: [0.021, 1.75, 2.8],
+    rot: [-3.1, -0.023, -3.1],
+    url: "/gmail.webp",
+  },
+  {
+    name: "github",
+    pos: [0.024, 1.6, 2.8],
+    rot: [-3.1, -0.023, -3.1],
+    url: "/github.webp",
+  },
+  {
+    name: "linkedin",
+    pos: [0.02, 1.45, 2.8],
+    rot: [-3.1, -0.023, -3.1],
+    url: "/linkedin.webp",
+  },
+  {
+    name: "instagram",
+    pos: [0.02, 1.315, 2.8],
+    rot: [-3.1, -0.023, -3.1],
+    url: "/instagram.webp",
+  },
+];
 export default function Codinggg(props) {
   const group = useRef(null);
-  const { nodes, materials, animations } = useGLTF("/untitled.gltf");
+  const { nodes, materials, animations } = useGLTF("/untitled.glb");
+
+  const skillTextures = useTexture(
+    SKILLS_DATA.reduce(
+      (acc, skill) => ({ ...acc, [skill.name]: skill.url }),
+      {},
+    ),
+  );
+  const socialTextures = useTexture(
+    SOCIAL_DATA.reduce((acc, soc) => ({ ...acc, [soc.name]: soc.url }), {}),
+  );
   const { actions } = useAnimations(animations, group);
   const gateref = useRef(null);
 
@@ -93,24 +191,24 @@ export default function Codinggg(props) {
       tl.current.to(
         gateref.current.rotation,
         { x: 0, y: 0, z: -3.2, ease: "linear" },
-        0.6
+        0.6,
       );
       tl.current.to(
         gateref.current.position,
         { x: 23.7, y: -30.7, z: 0, ease: "linear" },
-        0.6
+        0.6,
       );
 
       tl.current.to(
         gateref.current.position,
         { x: 33.9, y: -15.5, z: 0, ease: "linear" },
-        3
+        3,
       );
 
       tl.current.to(
         gateref.current.rotation,
         { x: 0, y: 0, z: -2.12, ease: "linear" },
-        3
+        3,
       );
 
       tl.current.to(group.current.position, groupPosition, 0.5);
@@ -134,7 +232,7 @@ export default function Codinggg(props) {
           y: -0.8,
           x: 1.4,
         },
-        2.5
+        2.5,
       );
       tl.current.to(
         group.current.rotation,
@@ -142,7 +240,7 @@ export default function Codinggg(props) {
           y: -2.65,
           z: -0.03,
         },
-        3
+        3,
       );
       tl.current.to(group.current.rotation, rotationValues, 3.5);
       tl.current.to(group.current.position, positionValues, 3.5);
@@ -153,7 +251,7 @@ export default function Codinggg(props) {
           x: 5,
           y: 0,
         },
-        4
+        4,
       );
     };
     initTimeline();
@@ -161,8 +259,9 @@ export default function Codinggg(props) {
 
   const texture = useTexture("/profilepic.png");
   const texture1 = useTexture("/exit.jpg");
+
   const blankWhiteMaterial = new THREE.MeshBasicMaterial({ color: "white" });
-  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#C6AC8F" });
+  const blankBlackMaterial = new THREE.MeshBasicMaterial({ color: "#77624B" });
   const fontURL = "/ChochoCrunch-BF67145608f402e.ttf"; // Replace with your font file's path
   return (
     <>
@@ -293,7 +392,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                A self-taught frontend developer with two years of
+                A self-taught Full-Stack Developer with three years of
               </Text>
               <Text
                 position={[-2.05, -4.92, 1.87]} // Slightly above the surface
@@ -313,7 +412,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                interactive web experiences. Specializing in both 2D
+                interactive Game and Web experiences. Specializing in
               </Text>
               <Text
                 position={[-2.24, -4.76, 1.87]} // Slightly above the surface
@@ -323,7 +422,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                and 3D web development, he builds dynamic websites
+                both 2D and 3D Game/Web Development, he builds
               </Text>
               <Text
                 position={[-2.36, -4.73, 1.87]} // Slightly above the surface
@@ -333,7 +432,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                with fluid animations and immersive designs.
+                engaging 3D Games ranging from offline experiences to
               </Text>
               <Text
                 position={[-2.47, -4.69, 1.87]} // Slightly above the surface
@@ -343,7 +442,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                Additionally, he develops engaging 3D games
+                Multiplayer environments using modern technologies.
               </Text>
               <Text
                 position={[-2.55, -4.6, 1.87]} // Slightly above the surface
@@ -353,7 +452,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                ranging from offline experiences to multiplayer
+                Additionally, he develops Dynamic Websites with fluid
               </Text>
               <Text
                 position={[-2.65, -4.55, 1.87]} // Slightly above the surface
@@ -363,7 +462,7 @@ export default function Codinggg(props) {
                 anchorX="center"
                 anchorY="middle"
               >
-                environments using modern frontend technologies.
+                animations and immersive designs.
               </Text>
               <Text
                 position={[-2.76, -4.52, 1.87]} // Slightly above the surface
@@ -414,7 +513,7 @@ export default function Codinggg(props) {
 
               {/* Add Text over Object_19 */}
               <Text
-                position={[10, 12.45, 9.4]} // Adjust position to place above Object_19
+                position={[10, 12.45, 9.65]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
                 fontSize={0.45} // Adjust size of the text
                 color="black" // Text color
@@ -425,7 +524,7 @@ export default function Codinggg(props) {
                 My Skills!
               </Text>
               <Text
-                position={[9, 12.45, 8.3]} // Adjust position to place above Object_19
+                position={[9, 12.45, 8.55]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.25]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -436,7 +535,7 @@ export default function Codinggg(props) {
                 HTML
               </Text>
               <Text
-                position={[10, 12.45, 8.3]} // Adjust position to place above Object_19
+                position={[10, 12.45, 8.55]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -447,7 +546,7 @@ export default function Codinggg(props) {
                 CSS
               </Text>
               <Text
-                position={[11, 12.45, 8.14]} // Adjust position to place above Object_19
+                position={[11, 12.45, 8.53]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
                 fontSize={0.25} // Adjust size of the text
                 color="black" // Text color
@@ -458,7 +557,7 @@ export default function Codinggg(props) {
                 JAVASCRIPT
               </Text>
               <Text
-                position={[9, 12.45, 7.1]} // Adjust position to place above Object_19
+                position={[9, 12.45, 7.47]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -469,7 +568,7 @@ export default function Codinggg(props) {
                 REACT
               </Text>
               <Text
-                position={[10, 12.45, 7.25]} // Adjust position to place above Object_19
+                position={[10, 12.45, 7.49]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.17]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -477,10 +576,10 @@ export default function Codinggg(props) {
                 anchorY="middle"
                 font={fontURL}
               >
-                THREE
+                THREE JS
               </Text>
               <Text
-                position={[11, 12.45, 7.05]} // Adjust position to place above Object_19
+                position={[11, 12.45, 7.5]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -491,8 +590,30 @@ export default function Codinggg(props) {
                 GSAP
               </Text>
               <Text
-                position={[9, 12.45, 5.9]} // Adjust position to place above Object_19
+                position={[9, 12.45, 6.54]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.33]} // Align with Object_19
+                fontSize={0.27} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                C#
+              </Text>
+              <Text
+                position={[11, 12.45, 6.54]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
+                fontSize={0.28} // Adjust size of the text
+                color="black" // Text color
+                anchorX="center"
+                anchorY="middle"
+                font={fontURL}
+              >
+                UNITY
+              </Text>
+              <Text
+                position={[9.29, 12.45, 5.63]} // Adjust position to place above Object_19
+                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
                 fontSize={0.27} // Adjust size of the text
                 color="black" // Text color
                 anchorX="center"
@@ -502,7 +623,7 @@ export default function Codinggg(props) {
                 MONGODB
               </Text>
               <Text
-                position={[10, 12.49, 5.9]} // Adjust position to place above Object_19
+                position={[10, 12.49, 6.45]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -513,7 +634,7 @@ export default function Codinggg(props) {
                 GITHUB
               </Text>
               <Text
-                position={[11, 12.45, 5.9]} // Adjust position to place above Object_19
+                position={[10.6, 12.45, 5.6]} // Adjust position to place above Object_19
                 rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
                 fontSize={0.28} // Adjust size of the text
                 color="black" // Text color
@@ -525,42 +646,17 @@ export default function Codinggg(props) {
               </Text>
 
               {/* Add an Image (Plane) over Object_19 */}
-              <mesh position={[9, 12.45, 8.7]} rotation={[-1.6, 3.3, 3.2]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/html.webp")} />
-              </mesh>
-              <mesh position={[10, 12.45, 8.7]} rotation={[-1.6, 3.3, 3.15]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/css.webp")} />
-              </mesh>
-              <mesh position={[11, 12.45, 8.6]} rotation={[-1.6, 3.3, 3.09]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/js.webp")} />
-              </mesh>
-              <mesh position={[9, 12.45, 7.6]} rotation={[-1.6, 3.3, 3.2]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/react.webp")} />
-              </mesh>
-              <mesh position={[10, 12.45, 7.7]} rotation={[-1.6, 3.3, 3.15]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/three.webp")} />
-              </mesh>
-              <mesh position={[11, 12.45, 7.5]} rotation={[-1.6, 3.3, 3.15]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/gsap.webp")} />
-              </mesh>
-              <mesh position={[9, 12.45, 6.4]} rotation={[-1.6, 3, 3.1]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/mongo.webp")} />
-              </mesh>
-              <mesh position={[10, 12.45, 6.4]} rotation={[-1.6, 3.01, 3.06]}>
-                <planeGeometry args={[0.5, 0.4]} />
-                <meshBasicMaterial map={useTexture("/git.webp")} />
-              </mesh>
-              <mesh position={[11, 12.45, 6.4]} rotation={[-1.6, 3.13, 3.06]}>
-                <planeGeometry args={[0.5, 0.5]} />
-                <meshBasicMaterial map={useTexture("/node.webp")} />
-              </mesh>
+
+              {SKILLS_DATA.map((skill, index) => (
+                <mesh key={index} position={skill.pos} rotation={skill.rot}>
+                  <planeGeometry args={[0.5, 0.5]} />
+                  <meshBasicMaterial
+                    map={skillTextures[skill.name]}
+                    transparent={true}
+                    alphaTest={0.5}
+                  />
+                </mesh>
+              ))}
             </group>
 
             <mesh
@@ -717,7 +813,7 @@ export default function Codinggg(props) {
             </Text>
             <group position={[-0.89, 0.17, 0]} rotation={[0, 0, -0.03]}>
               <Text
-                position={[0.73, 1.6, 2.85]} // Position the text slightly above the plane
+                position={[0.68, 1.6, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.07} // Adjust size
                 color="black" // Text color
@@ -725,7 +821,7 @@ export default function Codinggg(props) {
                 anchorY="middle" // Vertical alignment
                 maxWidth={1.5} // Restrict text width
               >
-                • Gmail
+                Gmail
               </Text>
 
               <Text
@@ -739,7 +835,7 @@ export default function Codinggg(props) {
                 onClick={() =>
                   window.open(
                     "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
-                    "_blank"
+                    "_blank",
                   )
                 } // Open Gmail compose with prefilled email address
                 onPointerOver={(e) => {
@@ -765,7 +861,7 @@ export default function Codinggg(props) {
               </Text>
 
               <Text
-                position={[0.72, 1.45, 2.85]} // Position the text slightly above the plane
+                position={[0.68, 1.45, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.07} // Adjust size
                 color="black" // Text color
@@ -773,7 +869,7 @@ export default function Codinggg(props) {
                 anchorY="middle" // Vertical alignment
                 maxWidth={1.5} // Restrict text width
               >
-                • Github
+                Github
               </Text>
               <Text
                 position={[0.318, 1.44, 2.85]} // Position the text slightly above the plane
@@ -808,7 +904,7 @@ export default function Codinggg(props) {
                 Click here
               </Text>
               <Text
-                position={[0.69, 1.3, 2.85]} // Position the text slightly above the plane
+                position={[0.65, 1.3, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.07} // Adjust size
                 color="black" // Text color
@@ -816,7 +912,7 @@ export default function Codinggg(props) {
                 anchorY="middle" // Vertical alignment
                 maxWidth={1.5} // Restrict text width
               >
-                • LinkedIn
+                LinkedIn
               </Text>
               <Text
                 position={[0.32, 1.295, 2.85]} // Position the text
@@ -828,7 +924,7 @@ export default function Codinggg(props) {
                 maxWidth={1.5} // Restrict text width
                 onClick={() =>
                   window.open(
-                    "https://www.linkedin.com/in/nishit-lugun-b15a35257"
+                    "https://www.linkedin.com/in/nishit-lugun-b15a35257",
                   )
                 } // Open the link
                 onPointerOver={(e) => {
@@ -854,7 +950,7 @@ export default function Codinggg(props) {
               </Text>
 
               <Text
-                position={[0.678, 1.16, 2.85]} // Position the text slightly above the plane
+                position={[0.635, 1.16, 2.85]} // Position the text slightly above the plane
                 rotation={[-0.1, Math.PI, 0]}
                 fontSize={0.067} // Adjust size
                 color="black" // Text color
@@ -862,7 +958,7 @@ export default function Codinggg(props) {
                 anchorY="middle" // Vertical alignment
                 maxWidth={1.5} // Restrict text width
               >
-                • Instagram
+                Instagram
               </Text>
               <Text
                 position={[0.322, 1.16, 2.85]} // Position the text slightly above the plane
@@ -915,22 +1011,12 @@ export default function Codinggg(props) {
                 />
               </mesh>
             </group>
-            <mesh position={[0.021, 1.75, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
-              <planeGeometry args={[0.08, 0.08]} />
-              <meshBasicMaterial map={useTexture("/gmail.svg")} />
-            </mesh>
-            <mesh position={[0.024, 1.6, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
-              <planeGeometry args={[0.08, 0.08]} />
-              <meshBasicMaterial map={useTexture("/github.png")} />
-            </mesh>
-            <mesh position={[0.02, 1.45, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
-              <planeGeometry args={[0.08, 0.08]} />
-              <meshBasicMaterial map={useTexture("/linkedin.png")} />
-            </mesh>
-            <mesh position={[0.02, 1.315, 2.8]} rotation={[-3.1, -0.023, -3.1]}>
-              <planeGeometry args={[0.08, 0.08]} />
-              <meshBasicMaterial map={useTexture("/instagram.png")} />
-            </mesh>
+            {SOCIAL_DATA.map((soc, index) => (
+              <mesh key={index} position={soc.pos} rotation={soc.rot}>
+                <planeGeometry args={[0.08, 0.08]} />
+                <meshBasicMaterial map={socialTextures[soc.name]} transparent />
+              </mesh>
+            ))}
           </group>
         </group>
       </group>
@@ -938,4 +1024,4 @@ export default function Codinggg(props) {
   );
 }
 
-useGLTF.preload("/untitled.gltf");
+useGLTF.preload("/untitled.glb");
