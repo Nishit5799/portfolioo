@@ -10,18 +10,22 @@ import Loader from "./Loader";
 const MainCanvas = () => {
   return (
     <LightProvider>
-      <Suspense fallback={<Loader />}>
-        <div className="w-full h-screen fixed top-0 left-0">
-          <Navbar />
-          <Canvas
-            shadows
-            dpr={[1, 2]}
-            camera={{ fov: 64, position: [1.8, 0.8, 4] }}
-          >
+      {/* 1. Loader sits strictly as an HTML overlay outside the Canvas */}
+      <Loader />
+
+      <div className="w-full h-screen fixed top-0 left-0 z-0">
+        <Navbar />
+        <Canvas
+          shadows
+          dpr={[1, 2]}
+          camera={{ fov: 64, position: [1.8, 0.8, 4] }}
+        >
+          {/* 2. Suspense sits INSIDE Canvas. Fallback is null because our custom Loader handles the UI */}
+          <Suspense fallback={null}>
             <ScrollContainer />
-          </Canvas>
-        </div>
-      </Suspense>
+          </Suspense>
+        </Canvas>
+      </div>
     </LightProvider>
   );
 };

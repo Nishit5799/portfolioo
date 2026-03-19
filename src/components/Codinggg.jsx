@@ -74,6 +74,79 @@ const SKILLS_DATA = [
     url: "/node.webp",
   },
 ];
+const SKILL_LABELS = [
+  {
+    text: "My Skills!",
+    pos: [10, 12.45, 9.65],
+    rot: [-1.6, 3.3, 3.05],
+    size: 0.45,
+  },
+  { text: "HTML", pos: [9, 12.45, 8.55], rot: [-1.6, 3.3, 3.25], size: 0.28 },
+  { text: "CSS", pos: [10, 12.45, 8.55], rot: [-1.6, 3.3, 3.05], size: 0.28 },
+  {
+    text: "JAVASCRIPT",
+    pos: [11, 12.45, 8.53],
+    rot: [-1.6, 3.3, 3.05],
+    size: 0.25,
+  },
+  { text: "REACT", pos: [9, 12.45, 7.47], rot: [-1.6, 3.3, 3.15], size: 0.28 },
+  {
+    text: "THREE JS",
+    pos: [10, 12.45, 7.49],
+    rot: [-1.6, 3.3, 3.17],
+    size: 0.28,
+  },
+  { text: "GSAP", pos: [11, 12.45, 7.5], rot: [-1.6, 3.3, 3.05], size: 0.28 },
+  { text: "C#", pos: [9, 12.45, 6.54], rot: [-1.6, 3.3, 3.33], size: 0.27 },
+  { text: "UNITY", pos: [11, 12.45, 6.54], rot: [-1.6, 3.3, 3.2], size: 0.28 },
+  {
+    text: "MONGODB",
+    pos: [9.29, 12.45, 5.63],
+    rot: [-1.6, 3.3, 3.2],
+    size: 0.27,
+  },
+  { text: "GITHUB", pos: [10, 12.49, 6.5], rot: [-1.6, 3.3, 3.15], size: 0.28 },
+  { text: "NODE", pos: [10.6, 12.45, 5.65], rot: [-1.6, 3.3, 3.2], size: 0.28 },
+];
+const BIO_PARAGRAPH = [
+  {
+    text: "A self-taught Full-Stack Developer with three years of",
+    pos: [-1.95, -5, 1.87],
+  },
+  {
+    text: "dedicated experience in crafting visually stunning and",
+    pos: [-2.05, -4.92, 1.87],
+  },
+  {
+    text: "interactive Game and Web experiences. Specializing in",
+    pos: [-2.15, -4.85, 1.87],
+  },
+  {
+    text: "both 2D and 3D Game/Web Development, he builds",
+    pos: [-2.24, -4.76, 1.87],
+  },
+  {
+    text: "engaging 3D Games ranging from offline experiences to",
+    pos: [-2.36, -4.73, 1.87],
+  },
+  {
+    text: "Multiplayer environments using modern technologies.",
+    pos: [-2.47, -4.69, 1.87],
+  },
+  {
+    text: "Additionally, he develops Dynamic Websites with fluid",
+    pos: [-2.55, -4.6, 1.87],
+  },
+  { text: "animations and immersive designs.", pos: [-2.65, -4.55, 1.87] },
+  {
+    text: "Passionate about innovation and user-centric design,",
+    pos: [-2.76, -4.52, 1.87],
+  },
+  {
+    text: "transforming ideas into efficient digital realities.",
+    pos: [-2.86, -4.46, 1.87],
+  },
+];
 const SOCIAL_DATA = [
   {
     name: "gmail",
@@ -100,6 +173,40 @@ const SOCIAL_DATA = [
     url: "/instagram.webp",
   },
 ];
+const CONTACT_LINKS = [
+  {
+    platform: "Gmail",
+    url: "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
+    labelPos: [0.68, 1.6, 2.85],
+    linkPos: [0.31, 1.594, 2.85],
+    labelSize: 0.07,
+    linkSize: 0.05,
+  },
+  {
+    platform: "Github",
+    url: "https://github.com/Nishit5799",
+    labelPos: [0.68, 1.45, 2.85],
+    linkPos: [0.318, 1.44, 2.85],
+    labelSize: 0.07,
+    linkSize: 0.049,
+  },
+  {
+    platform: "LinkedIn",
+    url: "https://www.linkedin.com/in/nishit-lugun-b15a35257",
+    labelPos: [0.65, 1.3, 2.85],
+    linkPos: [0.32, 1.295, 2.85],
+    labelSize: 0.07,
+    linkSize: 0.049,
+  },
+  {
+    platform: "Instagram",
+    url: "https://instagram.com/_nisheeeet_",
+    labelPos: [0.635, 1.16, 2.85],
+    linkPos: [0.322, 1.16, 2.85],
+    labelSize: 0.067,
+    linkSize: 0.049,
+  },
+];
 export default function Codinggg(props) {
   const group = useRef(null);
   const { nodes, materials, animations } = useGLTF("/untitled.glb");
@@ -116,7 +223,7 @@ export default function Codinggg(props) {
   const { actions } = useAnimations(animations, group);
   const gateref = useRef(null);
 
-  const tl = useRef(gsap.timeline());
+  const tl = useRef(gsap.timeline({ paused: true }));
   const scroll = useScroll();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -128,18 +235,22 @@ export default function Codinggg(props) {
   const positionUsername = isSmallScreen
     ? [-1.77, -5.15, 1.89]
     : [-1.81, -5.05, 1.89];
+  const mainHeaderSize = isSmallScreen ? 0.132 : 0.15;
 
-  const fontSize1 = isSmallScreen ? 0.092 : 0.086;
-  const fontSize2 = isSmallScreen ? 0.0899 : 0.0788;
-  const fontSize3 = isSmallScreen ? 0.09 : 0.081;
-  const fontSize4 = isSmallScreen ? 0.086 : 0.082;
-  const fontSize5 = isSmallScreen ? 0.09 : 0.082;
-  const fontSize6 = isSmallScreen ? 0.086 : 0.083;
-  const fontSize7 = isSmallScreen ? 0.09 : 0.083;
-  const fontSize8 = isSmallScreen ? 0.09 : 0.083;
-  const fontSize9 = isSmallScreen ? 0.09 : 0.083;
-  const fontSize10 = isSmallScreen ? 0.092 : 0.083;
+  const bioFontSizes = isSmallScreen
+    ? [0.092, 0.0899, 0.09, 0.086, 0.09, 0.086, 0.09, 0.09, 0.09, 0.092]
+    : [0.086, 0.0788, 0.081, 0.082, 0.082, 0.083, 0.083, 0.083, 0.083, 0.083];
+  const handlePointerOver = (e) => {
+    // Animates the text color to Blue (0, 0, 1) smoothly
+    gsap.to(e.object.material.color, { r: 0, g: 0, b: 1, duration: 0.3 });
+    document.body.style.cursor = "pointer";
+  };
 
+  const handlePointerOut = (e) => {
+    // Reverts the text color to Black (0, 0, 0) smoothly
+    gsap.to(e.object.material.color, { r: 0, g: 0, b: 0, duration: 0.3 });
+    document.body.style.cursor = "default";
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 640); // Assuming 'sm' breakpoint
@@ -365,125 +476,36 @@ export default function Codinggg(props) {
               <Text
                 position={position}
                 rotation={[0, 0, -2.1]}
-                fontSize={fontSize}
+                fontSize={mainHeaderSize}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
                 LET ME INTRODUCE MYSELF!
               </Text>
-
               <Text
                 position={positionUsername}
                 rotation={[0, 0, -2.1]}
                 fontSize={0.15}
-                // font={fontURL}
                 color="black"
                 anchorX="center"
                 anchorY="middle"
               >
                 Nishit Lugun
               </Text>
-              <Text
-                position={[-1.95, -5, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize1}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                A self-taught Full-Stack Developer with three years of
-              </Text>
-              <Text
-                position={[-2.05, -4.92, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize2}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                dedicated experience in crafting visually stunning and
-              </Text>
-              <Text
-                position={[-2.15, -4.85, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize3}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                interactive Game and Web experiences. Specializing in
-              </Text>
-              <Text
-                position={[-2.24, -4.76, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize4}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                both 2D and 3D Game/Web Development, he builds
-              </Text>
-              <Text
-                position={[-2.36, -4.73, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize5}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                engaging 3D Games ranging from offline experiences to
-              </Text>
-              <Text
-                position={[-2.47, -4.69, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize6}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                Multiplayer environments using modern technologies.
-              </Text>
-              <Text
-                position={[-2.55, -4.6, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize7}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                Additionally, he develops Dynamic Websites with fluid
-              </Text>
-              <Text
-                position={[-2.65, -4.55, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize8}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                animations and immersive designs.
-              </Text>
-              <Text
-                position={[-2.76, -4.52, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize9}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                Passionate about innovation and user-centric design,
-              </Text>
-              <Text
-                position={[-2.86, -4.46, 1.87]} // Slightly above the surface
-                rotation={[0, 0, -2.1]}
-                fontSize={fontSize10}
-                color="black"
-                anchorX="center"
-                anchorY="middle"
-              >
-                transforming ideas into efficient digital realities.
-              </Text>
+              {BIO_PARAGRAPH.map((line, i) => (
+                <Text
+                  key={i}
+                  position={line.pos}
+                  rotation={[0, 0, -2.1]}
+                  fontSize={bioFontSizes[i]}
+                  color="black"
+                  anchorX="center"
+                  anchorY="middle"
+                >
+                  {line.text}
+                </Text>
+              ))}
             </group>
             <mesh
               name="Object_16"
@@ -512,138 +534,20 @@ export default function Codinggg(props) {
               />
 
               {/* Add Text over Object_19 */}
-              <Text
-                position={[10, 12.45, 9.65]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.45} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                My Skills!
-              </Text>
-              <Text
-                position={[9, 12.45, 8.55]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.25]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                HTML
-              </Text>
-              <Text
-                position={[10, 12.45, 8.55]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                CSS
-              </Text>
-              <Text
-                position={[11, 12.45, 8.53]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.25} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                JAVASCRIPT
-              </Text>
-              <Text
-                position={[9, 12.45, 7.47]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                REACT
-              </Text>
-              <Text
-                position={[10, 12.45, 7.49]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.17]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                THREE JS
-              </Text>
-              <Text
-                position={[11, 12.45, 7.5]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.05]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                GSAP
-              </Text>
-              <Text
-                position={[9, 12.45, 6.54]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.33]} // Align with Object_19
-                fontSize={0.27} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                C#
-              </Text>
-              <Text
-                position={[11, 12.45, 6.54]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                UNITY
-              </Text>
-              <Text
-                position={[9.29, 12.45, 5.63]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
-                fontSize={0.27} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                MONGODB
-              </Text>
-              <Text
-                position={[10, 12.49, 6.45]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.15]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                GITHUB
-              </Text>
-              <Text
-                position={[10.6, 12.45, 5.6]} // Adjust position to place above Object_19
-                rotation={[-1.6, 3.3, 3.2]} // Align with Object_19
-                fontSize={0.28} // Adjust size of the text
-                color="black" // Text color
-                anchorX="center"
-                anchorY="middle"
-                font={fontURL}
-              >
-                NODE
-              </Text>
+              {SKILL_LABELS.map((label, i) => (
+                <Text
+                  key={i}
+                  position={label.pos}
+                  rotation={label.rot}
+                  fontSize={label.size}
+                  font={fontURL} // Restored the custom font reference here
+                  color="black"
+                  anchorX="center"
+                  anchorY="middle"
+                >
+                  {label.text}
+                </Text>
+              ))}
 
               {/* Add an Image (Plane) over Object_19 */}
 
@@ -652,8 +556,9 @@ export default function Codinggg(props) {
                   <planeGeometry args={[0.5, 0.5]} />
                   <meshBasicMaterial
                     map={skillTextures[skill.name]}
-                    transparent={true}
-                    alphaTest={0.5}
+                    transparent={true} // Required for transparency
+                    alphaTest={0.5} // This "cuts off" the transparent pixels so they don't block other objects
+                    side={THREE.DoubleSide} // Ensures the icon is visible from the back too
                   />
                 </mesh>
               ))}
@@ -812,186 +717,33 @@ export default function Codinggg(props) {
               Contact Me!
             </Text>
             <group position={[-0.89, 0.17, 0]} rotation={[0, 0, -0.03]}>
-              <Text
-                position={[0.68, 1.6, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.07} // Adjust size
-                color="black" // Text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-              >
-                Gmail
-              </Text>
-
-              <Text
-                position={[0.31, 1.594, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.05} // Adjust size
-                color="black" // Initial text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-                onClick={() =>
-                  window.open(
-                    "https://mail.google.com/mail/?view=cm&fs=1&to=lugun.nishit@gmail.com",
-                    "_blank",
-                  )
-                } // Open Gmail compose with prefilled email address
-                onPointerOver={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 1,
-                    duration: 0.5,
-                  }); // Smoothly transition to blue
-                  document.body.style.cursor = "pointer"; // Change cursor to pointer
-                }}
-                onPointerOut={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 0,
-                    duration: 0.5,
-                  }); // Smoothly transition back to black
-                  document.body.style.cursor = "default"; // Reset cursor to default
-                }}
-              >
-                Click here
-              </Text>
-
-              <Text
-                position={[0.68, 1.45, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.07} // Adjust size
-                color="black" // Text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-              >
-                Github
-              </Text>
-              <Text
-                position={[0.318, 1.44, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.049} // Adjust size
-                color="black" // Initial text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-                onClick={() =>
-                  window.open("https://github.com/Nishit5799", "_blank")
-                } // Open Gmail compose with prefilled email address
-                onPointerOver={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 1,
-                    duration: 0.5,
-                  }); // Smoothly transition to blue
-                  document.body.style.cursor = "pointer"; // Change cursor to pointer
-                }}
-                onPointerOut={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 0,
-                    duration: 0.5,
-                  }); // Smoothly transition back to black
-                  document.body.style.cursor = "default"; // Reset cursor to default
-                }}
-              >
-                Click here
-              </Text>
-              <Text
-                position={[0.65, 1.3, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.07} // Adjust size
-                color="black" // Text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-              >
-                LinkedIn
-              </Text>
-              <Text
-                position={[0.32, 1.295, 2.85]} // Position the text
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.049} // Adjust size
-                color="black" // Initial text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-                onClick={() =>
-                  window.open(
-                    "https://www.linkedin.com/in/nishit-lugun-b15a35257",
-                  )
-                } // Open the link
-                onPointerOver={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 1,
-                    duration: 0.5,
-                  }); // Smoothly transition to blue
-                  document.body.style.cursor = "pointer"; // Change cursor to pointer
-                }}
-                onPointerOut={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 0,
-                    duration: 0.5,
-                  }); // Smoothly transition back to black
-                  document.body.style.cursor = "default"; // Reset cursor to default
-                }}
-              >
-                Click here
-              </Text>
-
-              <Text
-                position={[0.635, 1.16, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.067} // Adjust size
-                color="black" // Text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-              >
-                Instagram
-              </Text>
-              <Text
-                position={[0.322, 1.16, 2.85]} // Position the text slightly above the plane
-                rotation={[-0.1, Math.PI, 0]}
-                fontSize={0.049} // Adjust size
-                color="black" // Initial text color
-                anchorX="center" // Horizontal alignment
-                anchorY="middle" // Vertical alignment
-                maxWidth={1.5} // Restrict text width
-                onClick={() =>
-                  window.open("https://instagram.com/_nisheeeet_", "_blank")
-                } // Open Gmail compose with prefilled email address
-                onPointerOver={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 1,
-                    duration: 0.5,
-                  }); // Smoothly transition to blue
-                  document.body.style.cursor = "pointer"; // Change cursor to pointer
-                }}
-                onPointerOut={(e) => {
-                  gsap.to(e.object.material.color, {
-                    r: 0,
-                    g: 0,
-                    b: 0,
-                    duration: 0.5,
-                  }); // Smoothly transition back to black
-                  document.body.style.cursor = "default"; // Reset cursor to default
-                }}
-              >
-                Click here
-              </Text>
+              {CONTACT_LINKS.map((link, i) => (
+                <React.Fragment key={i}>
+                  <Text
+                    position={link.labelPos}
+                    rotation={[-0.1, Math.PI, 0]}
+                    fontSize={link.labelSize}
+                    color="black"
+                    anchorX="center"
+                    anchorY="middle"
+                  >
+                    {link.platform}
+                  </Text>
+                  <Text
+                    position={link.linkPos}
+                    rotation={[-0.1, Math.PI, 0]}
+                    fontSize={link.linkSize}
+                    color="black"
+                    anchorX="center"
+                    anchorY="middle"
+                    onClick={() => window.open(link.url, "_blank")}
+                    onPointerOver={handlePointerOver}
+                    onPointerOut={handlePointerOut}
+                  >
+                    Click here
+                  </Text>
+                </React.Fragment>
+              ))}
               <mesh
                 name="Plane"
                 castShadow
@@ -1025,3 +777,28 @@ export default function Codinggg(props) {
 }
 
 useGLTF.preload("/untitled.glb");
+[
+  "/profilepic.png",
+  "/exit.jpg",
+  "/code.jpg",
+  "/html.webp",
+  "/css.webp",
+  "/js.webp",
+  "/react.webp",
+  "/three.webp",
+  "/gsap.webp",
+  "/csharp.webp",
+  "/unity.webp",
+  "/git.webp",
+  "/mongo.webp",
+  "/node.webp",
+  "/gmail.webp",
+  "/github.webp",
+  "/linkedin.webp",
+  "/instagram.webp",
+  "/racing.jpg",
+  "/deathmatch.jpg",
+  "/tictactoe.jpg",
+  "/arcane_gaming_site.jpg",
+  "/funtoy.jpg",
+].forEach((url) => useTexture.preload(url));

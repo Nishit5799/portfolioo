@@ -22,7 +22,7 @@ const ScrollContainer = () => {
   };
 
   return (
-    <ScrollControls pages={7} damping={0.4}>
+    <ScrollControls pages={7} damping={0.27}>
       <MainScene />
       <Scroll html>
         <div className="page10" ref={page10Ref}>
