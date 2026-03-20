@@ -12,7 +12,7 @@ const Navbar = () => {
       setLightIntensity(0); // Turn off light
       setTextOverride(""); // Clear text override
     } else {
-      setTextOverride("Turn off light"); // Set text to "Turn off light"
+      setTextOverride("TURN OFF LIGHTㅤ"); // Set text to "Turn off light"
       setIsFlickering(true); // Trigger flickering effect
     }
   };
@@ -36,7 +36,9 @@ const Navbar = () => {
 
   const lightStatusText =
     textOverride ||
-    (lightIntensity === 5 ? "turn off light" : "Click here to turn on light");
+    (lightIntensity === 5
+      ? "TURN OFF LIGHTㅤ"
+      : "CLICK HERE TO TURN ON LIGHTㅤ");
 
   return (
     <div
@@ -44,6 +46,9 @@ const Navbar = () => {
       onClick={toggleLight}
     >
       <div className="flex items-center sm:mx-20 mx-4 mt-[5vh]">
+        <h1 className="ml-4 sm:text-[1vw]  cursor-pointer text-[3vw] font-semibold text-white transition-opacity duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)]">
+          {lightStatusText}
+        </h1>
         {lightIntensity === 5 ? (
           <PiLightbulbLight
             size={30}
@@ -55,9 +60,6 @@ const Navbar = () => {
             className="sm:w-10 sm:h-10 h-7 w-7 rounded-full p-1 bg-white cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)] hover:scale-110"
           />
         )}
-        <h1 className="ml-4 sm:text-[1vw] font-zentry cursor-pointer text-[3vw] font-semibold text-white transition-opacity duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)]">
-          {lightStatusText}
-        </h1>
       </div>
     </div>
   );
