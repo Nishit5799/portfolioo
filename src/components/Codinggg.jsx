@@ -126,11 +126,11 @@ const BIO_PARAGRAPH = [
     pos: [-2.24, -4.76, 1.87],
   },
   {
-    text: "engaging 3D Games ranging from offline experiences to",
+    text: "engaging 3D Games ranging from offline experiences",
     pos: [-2.36, -4.73, 1.87],
   },
   {
-    text: "Multiplayer environments using modern technologies.",
+    text: "to Multiplayer environments using modern technologies.",
     pos: [-2.47, -4.69, 1.87],
   },
   {
