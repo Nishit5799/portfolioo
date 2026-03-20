@@ -1,66 +1,119 @@
-import { useLight } from "@/context/LightContext";
 import React, { useEffect, useState } from "react";
-import { PiLightbulbLight, PiLightbulbFill } from "react-icons/pi";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  AnimatePresence,
+} from "framer-motion";
+import { useLight } from "@/context/LightContext";
 
 const Navbar = () => {
   const { lightIntensity, setLightIntensity } = useLight();
-  const [isFlickering, setIsFlickering] = useState(false); // Track flickering state
-  const [textOverride, setTextOverride] = useState(""); // Override text state
+  const [isFlickering, setIsFlickering] = useState(false);
 
-  const toggleLight = () => {
+  const extraLength = useMotionValue(0);
+  const rotation = useMotionValue(0);
+
+  // Base height of the string
+  const stringHeight = useTransform(extraLength, (val) => 90 + val);
+
+  const handleToggle = () => {
     if (lightIntensity === 5) {
-      setLightIntensity(0); // Turn off light
-      setTextOverride(""); // Clear text override
+      setLightIntensity(0);
     } else {
-      setTextOverride("TURN OFF LIGHTㅤ"); // Set text to "Turn off light"
-      setIsFlickering(true); // Trigger flickering effect
+      setIsFlickering(true);
     }
   };
 
   useEffect(() => {
     if (isFlickering) {
-      const flickerSequence = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5]; // Sequence of random intensities
+      const flickerSequence = [0, 5, 0, 5, 0, 5, 0, 5, 0, 5];
       let index = 0;
-
       const flickerInterval = setInterval(() => {
         setLightIntensity(flickerSequence[index]);
         index++;
-
         if (index === flickerSequence.length) {
           clearInterval(flickerInterval);
-          setIsFlickering(false); // Stop flickering
+          setIsFlickering(false);
         }
-      }, 200); // Adjust duration for each flicker
+      }, 150);
+      return () => clearInterval(flickerInterval);
     }
   }, [isFlickering, setLightIntensity]);
 
-  const lightStatusText =
-    textOverride ||
-    (lightIntensity === 5
-      ? "TURN OFF LIGHTㅤ"
-      : "CLICK HERE TO TURN ON LIGHTㅤ");
-
   return (
-    <div
-      className="w-full h-[7vh] fixed z-[1] flex items-center justify-end"
-      onClick={toggleLight}
-    >
-      <div className="flex items-center sm:mx-20 mx-4 mt-[5vh]">
-        <h1 className="ml-4 sm:text-[1vw]  cursor-pointer text-[3vw] font-semibold text-white transition-opacity duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)]">
-          {lightStatusText}
-        </h1>
-        {lightIntensity === 5 ? (
-          <PiLightbulbLight
-            size={30}
-            className="sm:w-10 sm:h-10 h-7 w-7 rounded-full p-1 bg-white cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)] hover:scale-110"
+    <div className="fixed top-0 left-0 w-full h-0 z-[100] pointer-events-none">
+      <motion.div
+        className="absolute top-0 right-10 md:right-24 flex flex-col items-center pointer-events-none"
+        style={{
+          transformOrigin: "top center",
+          rotate: rotation,
+        }}
+      >
+        {/* REFINED PROFESSIONAL INSTRUCTIONS */}
+        <div className="absolute right-full mr-6 top-8 whitespace-nowrap">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={lightIntensity > 0 ? "on" : "off"}
+              initial={{ opacity: 0, x: 15 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -15 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="flex flex-col items-end"
+            >
+              {/* Status label removed as requested */}
+              <p className="text-[3.3vw] -mr-[20vw] md:-mr-[1.5vw]  md:text-base font-light tracking-tight text-gray-100 dark:text-gray-300 italic">
+                {lightIntensity > 0
+                  ? "PULL BULB DOWN TO TURN OFF THE LIGHT"
+                  : "PULL BULB DOWN TO TURN ON THE LIGHT"}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* THE STRING */}
+        <motion.div
+          style={{ height: stringHeight }}
+          className="w-[1.5px] bg-gray-400 dark:bg-gray-600 shadow-sm transition-colors"
+        />
+
+        {/* THE BULB ASSEMBLY */}
+        <motion.div
+          drag="y"
+          dragConstraints={{ top: 0, bottom: 20 }}
+          dragElastic={0}
+          style={{ y: extraLength }}
+          onDragEnd={(e, info) => {
+            if (info.offset.y > 5) {
+              handleToggle();
+            }
+
+            animate(extraLength, 0, {
+              type: "spring",
+              stiffness: 600,
+              damping: 25,
+            });
+
+            animate(rotation, [0, 18, -14, 10, -6, 3, 0], {
+              duration: 1.8,
+              ease: "easeOut",
+            });
+          }}
+          className="cursor-grab active:cursor-grabbing pointer-events-auto flex flex-col items-center"
+        >
+          {/* Anchor Seam */}
+          <div className="w-3 h-2 bg-gray-600 rounded-t-sm -mt-[3vh]" />
+
+          <div
+            className={`w-5 h-8 rounded-b-full rounded-t-sm border-2 transition-all duration-700 ${
+              lightIntensity > 0
+                ? "bg-yellow-300 border-yellow-100 shadow-[0_0_30px_rgba(253,224,71,0.6)]"
+                : "bg-gray-700 border-gray-600 shadow-inner"
+            }`}
           />
-        ) : (
-          <PiLightbulbFill
-            size={30}
-            className="sm:w-10 sm:h-10 h-7 w-7 rounded-full p-1 bg-white cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.65, 0.05, 0.36, 1)] hover:scale-110"
-          />
-        )}
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
