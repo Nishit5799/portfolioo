@@ -63,7 +63,7 @@ const Navbar = () => {
               className="flex flex-col items-end"
             >
               {/* Status label removed as requested */}
-              <p className="text-[3.3vw] -mr-[20vw] md:-mr-[1.5vw]  md:text-base font-light tracking-tight text-gray-100 dark:text-gray-300 italic">
+              <p className="text-[3.3vw]  md:text-base font-light tracking-tight text-gray-100 dark:text-gray-300 italic">
                 {lightIntensity > 0
                   ? "PULL BULB DOWN TO TURN OFF THE LIGHT"
                   : "PULL BULB DOWN TO TURN ON THE LIGHT"}
